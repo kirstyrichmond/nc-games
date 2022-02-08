@@ -1,16 +1,37 @@
+.review-list-main {
+  margin: 0px 10px 0px 10px;
+  padding: 0px;
+}
+
 .reviews-list {
   list-style-type: none;
-  margin: 0px 20px 0px 20px;
-  padding: 0px 20px;
+  margin: 0px 10px 0px 10px;
+  padding: 0px 10px;
 }
 
 .review-list-item {
   background-color: rgb(222, 222, 222);
   list-style-type: none;
-  margin: 10px 0px;
-  padding: 5px 5px;
+  margin: 15px 0px;
+  padding: 5px 10px;
+}
+
+.review-list-title {
+  margin: 0px;
+  padding: 10px 5px;
 }
 
 .review-list-photo {
   width: 200px;
+}
+
+.all-reviews-header {
+  margin: 0px;
+  padding: 10px;
+  text-transform: capitalize;
+}
+
+.review-list-comment-count {
+  margin: 0px;
+  padding: 0px 0px 0px 5px;
 }

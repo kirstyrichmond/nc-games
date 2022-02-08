@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { getCategories } from '../utils/api';
 import '../styles/categories.css'
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 
 const Categories = () => {
     const [categories, setCategories] = useState([])
@@ -21,10 +21,12 @@ const Categories = () => {
                   categories.map(category => {
                       return (
                           <>
-                          <li className='category-list-item' key={category.category_id}>
+                          <Link to={`/reviews/${category.slug}`}>
+                          <li className='category-list-item' key={category.slug}>
                           <h3>{category.slug}</h3>
                           <p>{category.description}</p>
                           </li>
+                          </Link>
                           </>
                       )
                   })

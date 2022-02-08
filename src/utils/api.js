@@ -11,28 +11,29 @@ export const getCategories = () => {
   });
 };
 
-// export const getCategoryBySlug = (slug) => {
-//   let categories = `/categories/`;
-//   if (slug) {
-//     categories += `${slug}`;
-//   }
+export const getAllReviews = (category, order, sort_by) => {
+  return gamesApi
+    .get(`/reviews`, {
+      params: {
+        category,
+        order,
+        sort_by,
+      },
+    })
+    .then(({ data }) => {
+      return data.reviews;
+    });
 
-//   return gamesApi.get(categories).then(({ data }) => {
-//     return data.categories;
-//   });
-// };
+  //   let review = `/reviews`;
 
-export const getAllReviews = (review_id) => {
-  let review = `/reviews/`;
+  //   if (category) {
+  //     review += `?category=${category}`;
+  //   }
 
-  if (review_id) {
-    review += `${review_id}`;
-  }
-
-  return gamesApi.get(review).then(({ data }) => {
-    console.log(data.reviews);
-    return data.reviews;
-  });
+  //   return gamesApi.get(review).then(({ data }) => {
+  //     console.log(data.reviews);
+  //     return data.reviews;
+  //   });
 };
 
 export const getReviewById = (review_id) => {
@@ -40,4 +41,31 @@ export const getReviewById = (review_id) => {
     console.log(data.review);
     return data.review;
   });
+};
+
+export const getComments = (review_id) => {
+  return gamesApi.get(`/reviews/${review_id}/comments`).then(({ data }) => {
+    return data.comments;
+  });
+};
+
+// export const patchVote = (review_id, vote) => {
+//   return gamesApi
+//     .patch(`/reviews/${review_id}`, { inc_votes: vote })
+//     .then(({ data }) => {
+//       console.log(data.review, "<< update vote");
+//       return data.review;
+//     });
+// };
+
+export const postComment = (review_id, body, username) => {
+  return gamesApi
+    .post(`/reviews/${review_id}/comments`, {
+      author: username,
+      body: body,
+    })
+    .then(({ data }) => {
+      console.log(data.comment, "<< new comment in api");
+      return data.comment;
+    });
 };

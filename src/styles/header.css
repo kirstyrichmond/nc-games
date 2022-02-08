@@ -1,10 +1,27 @@
-.header-logo {
+.header {
   background-color: rgb(237, 237, 237);
+  display: flex;
+  justify-content: space-between;
+}
+
+.header-logo {
   margin: 0px;
   padding: 15px;
   color: black;
+  font-size: 1.5em;
+  align-items: center;
 }
 
 a {
   text-decoration: none;
+}
+
+.header-name {
+  font-size: 0.7em;
+}
+
+.header-profile-pic {
+  width: 50px;
+  border-radius: 50%;
+  padding: 10px 10px;
 }

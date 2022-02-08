@@ -1,34 +1,104 @@
-import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
-import { getAllReviews, getReviewById } from '../utils/api';
+import React, { useContext, useEffect, useState } from 'react';
+import { Link, useParams } from 'react-router-dom';
+import { getAllReviews, getComments, getReviewById, postComment } from '../utils/api';
+import '../styles/review-card.css'
+import Vote from './Vote';
+import { UserContext } from './Contexts/User-Context';
+import PostComment from './PostComment';
+// import Comments from './Comments';
+// import { BsHandThumbsDown, BsHandThumbsUp } from "react-icons/bs";
 
 const ReviewPage = () => {
     const [singleReview, setSingleReview] = useState({})
     const { review_id } = useParams()
+    const { loggedInUser } = useContext(UserContext)
     
+    const [comments, setComments] = useState([])
+    // const [text, setText] = useState('')
     
+    useEffect(() => {
+        getComments(review_id).then(comments => {
+            setComments(comments)
+        })
+    }, [review_id])
+    // console.log(comments, "<< list of comments : review page");
+    // console.log(loggedInUser.username, "<< logged in user : review page");
+
     useEffect(() => {
         getReviewById(review_id).then(review => {
             setSingleReview(review)
-            console.log(review)
+            
         })
     }, [review_id])
     
     
-        console.log(review_id, "<< review id: review page");
-        console.log(singleReview, "<< single review")
+    
+        // console.log(review_id, "<< review id: review page");
+        // console.log(singleReview, "<< single review")
+
+        // const handleSubmit = (event) => {
+        //     event.preventDefault()
+        //     // handleSubmit(text)
+
+        //     const newComment = {
+        //         author: loggedInUser.username,
+        //         body: body
+        //     }
+
+        //     postComment(newComment).then((comment) => {
+        //         console.log(comment, "<< comment : review page")
+        //         return comment
+        //     })
+        //     .catch((err) => {
+        //         console.log(err)
+        //     })
+
+        // }
 
   return (
       <div>
-          <h2>Review</h2>
-          <div>
+          <div className='review-card'>
           <h3 className='review-list-title'>{singleReview.title}</h3>
-                <p className='review-list-owner'>{singleReview.owner}</p>
                 <img className='review-list-photo' src={singleReview.review_img_url} alt={singleReview.title} />
-                <p className='review-list-category'>{singleReview.category}</p>
-                <p className='review-list-created-at'>{singleReview.created_at}</p>
+                <p className='review-list-owner'>{singleReview.owner}</p>
                 <p className='review-list-votes'>Votes: {singleReview.votes}</p>
                 <p className='review-list-comment-count'>Comments: {singleReview.comment_count}</p>
+                <Link to={`/reviews/${singleReview.category}`}>
+                    <p className='review-list-category'>{singleReview.category}</p>
+                </Link>
+                <p className='review-list-created-at'>{singleReview.created_at}</p>
+                {/* <Vote vote={singleReview.vote} username={singleReview.owner} /> */}
+                {/* <div className='vote-container'>
+                   <BsHandThumbsUp className='thumbs-up-outline' />
+                   <BsHandThumbsDown className='thumbs-down-outline' />
+                </div> */}
+          </div>
+          <div className='comments-container'>
+              <h3>
+                  Comments...
+              </h3>
+              <div>
+                  <h3>
+                      Write comment...
+                  </h3>
+                  <PostComment review_id={review_id} comments={comments} setComments={setComments} loggedInUser={loggedInUser} />
+              </div>
+              <div>
+                  {
+                      comments.map(comment => {
+                          return (
+                              <>
+                                <li className='comment-card'>
+                                    <h4>{comment.body}</h4>
+                                    <p>{comment.author}</p>
+                                    <p>Votes: {comment.votes}</p>
+                                    <p>{comment.created_at}</p>
+                                </li>
+                              </>
+                          )
+                      })
+                  }
+              </div>
           </div>
       </div>
   )
