@@ -1,0 +1,16 @@
+.reviews-list {
+  list-style-type: none;
+  margin: 0px 20px 0px 20px;
+  padding: 0px 20px;
+}
+
+.review-list-item {
+  background-color: rgb(222, 222, 222);
+  list-style-type: none;
+  margin: 10px 0px;
+  padding: 5px 5px;
+}
+
+.review-list-photo {
+  width: 200px;
+}
