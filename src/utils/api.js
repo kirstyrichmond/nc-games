@@ -6,7 +6,6 @@ const gamesApi = axios.create({
 
 export const getCategories = () => {
   return gamesApi.get("/categories").then(({ data }) => {
-    console.log(data, "<< list of categories");
     return data.categories;
   });
 };
@@ -38,7 +37,6 @@ export const getAllReviews = (category, order, sort_by) => {
 
 export const getReviewById = (review_id) => {
   return gamesApi.get(`/reviews/${review_id}`).then(({ data }) => {
-    console.log(data.review);
     return data.review;
   });
 };
@@ -49,20 +47,21 @@ export const getComments = (review_id) => {
   });
 };
 
-// export const patchVote = (review_id, vote) => {
-//   return gamesApi
-//     .patch(`/reviews/${review_id}`, { inc_votes: vote })
-//     .then(({ data }) => {
-//       console.log(data.review, "<< update vote");
-//       return data.review;
-//     });
-// };
+export const patchVote = (review_id) => {
+  return gamesApi
+    .patch(`/reviews/${review_id}`, { inc_votes: 1 })
+    .then(({ data }) => {
+      console.log(data.review, "<< update vote");
+      return data.review;
+    });
+};
 
-export const postComment = (review_id, body, username) => {
+export const postComment = (review_id, commentData) => {
+  console.log(review_id, commentData, "<< review id and comment data");
   return gamesApi
     .post(`/reviews/${review_id}/comments`, {
-      author: username,
-      body: body,
+      username: commentData.username,
+      body: commentData.body,
     })
     .then(({ data }) => {
       console.log(data.comment, "<< new comment in api");

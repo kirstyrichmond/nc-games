@@ -31,30 +31,6 @@ const ReviewPage = () => {
         })
     }, [review_id])
     
-    
-    
-        // console.log(review_id, "<< review id: review page");
-        // console.log(singleReview, "<< single review")
-
-        // const handleSubmit = (event) => {
-        //     event.preventDefault()
-        //     // handleSubmit(text)
-
-        //     const newComment = {
-        //         author: loggedInUser.username,
-        //         body: body
-        //     }
-
-        //     postComment(newComment).then((comment) => {
-        //         console.log(comment, "<< comment : review page")
-        //         return comment
-        //     })
-        //     .catch((err) => {
-        //         console.log(err)
-        //     })
-
-        // }
-
   return (
       <div>
           <div className='review-card'>
@@ -67,7 +43,7 @@ const ReviewPage = () => {
                     <p className='review-list-category'>{singleReview.category}</p>
                 </Link>
                 <p className='review-list-created-at'>{singleReview.created_at}</p>
-                {/* <Vote vote={singleReview.vote} username={singleReview.owner} /> */}
+                <Vote votes={singleReview.votes} username={singleReview.owner} review_id={review_id} />
                 {/* <div className='vote-container'>
                    <BsHandThumbsUp className='thumbs-up-outline' />
                    <BsHandThumbsDown className='thumbs-down-outline' />
@@ -88,7 +64,7 @@ const ReviewPage = () => {
                       comments.map(comment => {
                           return (
                               <>
-                                <li className='comment-card'>
+                                <li key={comment.body} className='comment-card'>
                                     <h4>{comment.body}</h4>
                                     <p>{comment.author}</p>
                                     <p>Votes: {comment.votes}</p>
