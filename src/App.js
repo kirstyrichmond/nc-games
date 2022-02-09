@@ -11,7 +11,7 @@ import { UserContext } from "./components/Contexts/User-Context";
 
 function App() {
   const [loggedInUser, setLoggedInUser] = useState({
-    username: "cooljmessy",
+    username: "happyamy2016",
     name: "Kirsty Richmond",
     avatar_url:
       "https://media-exp1.licdn.com/dms/image/C4D03AQFELvuGKHDIAA/profile-displayphoto-shrink_400_400/0/1627666728379?e=1649894400&v=beta&t=EpTh-4qe_hDTcsEgeWF3bVXa7_U6cj2B7IMZ0Ho1tUc",

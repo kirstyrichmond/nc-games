@@ -3,9 +3,9 @@ import { getAllReviews } from '../utils/api';
 import '../styles/review-list.css'
 import ReviewPage from './ReviewPage';
 import { Link, useParams } from 'react-router-dom';
+import SortAndOrderBy from './SortAndOrderBy';
 
 const ReviewList = () => {
-
     const [reviews, setReviews] = useState([])
 
     const { category } = useParams()
@@ -16,16 +16,17 @@ const ReviewList = () => {
         })
     }, [category])
 
-    // const title = () => {
-    //     if (category) {
-    //         return category
-    //     } else 
-    // }
+    const updateReviews = (reviews) => {
+        setReviews(reviews)
+    }
     
 
   return (
   <><div className='review-list-main'>
           <h2 className='all-reviews-header'>{category ? category : "all reviews"}</h2>
+          <div className='sort-by'>
+              <SortAndOrderBy updateReviews={updateReviews} category={category} />
+          </div>
           <ul className='reviews-list'>
               {reviews.map(review => {
                   return (

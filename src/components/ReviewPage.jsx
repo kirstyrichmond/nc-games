@@ -14,15 +14,12 @@ const ReviewPage = () => {
     const { loggedInUser } = useContext(UserContext)
     
     const [comments, setComments] = useState([])
-    // const [text, setText] = useState('')
     
     useEffect(() => {
         getComments(review_id).then(comments => {
             setComments(comments)
         })
     }, [review_id])
-    // console.log(comments, "<< list of comments : review page");
-    // console.log(loggedInUser.username, "<< logged in user : review page");
 
     useEffect(() => {
         getReviewById(review_id).then(review => {
@@ -37,13 +34,13 @@ const ReviewPage = () => {
           <h3 className='review-list-title'>{singleReview.title}</h3>
                 <img className='review-list-photo' src={singleReview.review_img_url} alt={singleReview.title} />
                 <p className='review-list-owner'>{singleReview.owner}</p>
-                <p className='review-list-votes'>Votes: {singleReview.votes}</p>
+                {/* <p className='review-list-votes'>Votes: {singleReview.votes}</p> */}
                 <p className='review-list-comment-count'>Comments: {singleReview.comment_count}</p>
                 <Link to={`/reviews/${singleReview.category}`}>
                     <p className='review-list-category'>{singleReview.category}</p>
                 </Link>
                 <p className='review-list-created-at'>{singleReview.created_at}</p>
-                <Vote votes={singleReview.votes} username={singleReview.owner} review_id={review_id} />
+                <Vote votes={singleReview.votes} owner={singleReview.owner} review_id={review_id} />
                 {/* <div className='vote-container'>
                    <BsHandThumbsUp className='thumbs-up-outline' />
                    <BsHandThumbsDown className='thumbs-down-outline' />

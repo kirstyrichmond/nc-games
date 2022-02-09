@@ -10,16 +10,20 @@ export const getCategories = () => {
   });
 };
 
-export const getAllReviews = (category, order, sort_by) => {
+export const getAllReviews = (category, sort_by, order) => {
+  console.log(category, "<< category in api");
+  console.log(sort_by, "<< sort by in api");
+  console.log(order, "<< order by in api");
   return gamesApi
     .get(`/reviews`, {
       params: {
         category,
-        order,
         sort_by,
+        order,
       },
     })
     .then(({ data }) => {
+      console.log(data.reviews);
       return data.reviews;
     });
 
@@ -47,9 +51,9 @@ export const getComments = (review_id) => {
   });
 };
 
-export const patchVote = (review_id) => {
+export const patchVote = (review_id, num) => {
   return gamesApi
-    .patch(`/reviews/${review_id}`, { inc_votes: 1 })
+    .patch(`/reviews/${review_id}`, { inc_votes: num })
     .then(({ data }) => {
       console.log(data.review, "<< update vote");
       return data.review;
