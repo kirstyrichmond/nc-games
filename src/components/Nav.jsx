@@ -18,8 +18,11 @@ const Nav = () => {
 
   return (
    <div className='nav'>
-       <Link className='nav-link' to={`/categories`}>All categories | </Link>
-       <Link className='nav-link' to={`/reviews`}>All Reviews  </Link>
+       <Link className='nav-link' to={`/categories`}>All Categories | </Link>
+       <Link className='nav-link' to={`/reviews`}>All Reviews | </Link>
+       <Link className='nav-link' to={`/users`}>
+           All Users
+       </Link>
        {/* <div className='nav-profile'>
            <p>{loggedInUser.name}</p>
            <img className='nav-profile-pic' alt={loggedInUser.name} src={loggedInUser.avatar_url} />

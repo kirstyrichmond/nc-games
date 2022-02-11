@@ -1,0 +1,25 @@
+.user-profile-photo {
+  width: 200px;
+}
+
+.user-profile-review {
+  display: flex;
+  flex-direction: row;
+}
+
+.user-profile-review-photo {
+  width: 120px;
+  object-fit: contain;
+}
+
+.user-profile-review-info {
+  display: flex;
+  flex-direction: column;
+  font-size: 0.6em;
+  padding: 15px;
+}
+
+.user-profile-review-list {
+  margin: 10px;
+  padding: 10px;
+}

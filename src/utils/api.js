@@ -4,6 +4,8 @@ const gamesApi = axios.create({
   baseURL: "http://be-nc-games-app.herokuapp.com/api",
 });
 
+// -------- GET ---------- //
+
 export const getCategories = () => {
   return gamesApi.get("/categories").then(({ data }) => {
     return data.categories;
@@ -11,9 +13,6 @@ export const getCategories = () => {
 };
 
 export const getAllReviews = (category, sort_by, order) => {
-  console.log(category, "<< category in api");
-  console.log(sort_by, "<< sort by in api");
-  console.log(order, "<< order by in api");
   return gamesApi
     .get(`/reviews`, {
       params: {
@@ -26,23 +25,6 @@ export const getAllReviews = (category, sort_by, order) => {
       console.log(data.reviews);
       return data.reviews;
     });
-
-  //   let review = `/reviews`;
-
-  //   if (category) {
-  //     review += `?category=${category}`;
-  //   }
-
-  //   return gamesApi.get(review).then(({ data }) => {
-  //     console.log(data.reviews);
-  //     return data.reviews;
-  //   });
-};
-
-export const getReviewById = (review_id) => {
-  return gamesApi.get(`/reviews/${review_id}`).then(({ data }) => {
-    return data.review;
-  });
 };
 
 export const getComments = (review_id) => {
@@ -51,24 +33,70 @@ export const getComments = (review_id) => {
   });
 };
 
-export const patchVote = (review_id, num) => {
+export const getReviewById = (review_id) => {
+  return gamesApi.get(`/reviews/${review_id}`).then(({ data }) => {
+    return data.review;
+  });
+};
+
+export const getUsers = () => {
+  return gamesApi.get(`/users`).then(({ data }) => {
+    return data.users;
+  });
+};
+
+export const getUserByUsername = (username) => {
+  return gamesApi.get(`/users/${username}`).then(({ data }) => {
+    return data.user;
+  });
+};
+
+// -------- PATCH ---------- //
+
+export const patchReviewVote = (review_id, num) => {
   return gamesApi
     .patch(`/reviews/${review_id}`, { inc_votes: num })
     .then(({ data }) => {
-      console.log(data.review, "<< update vote");
       return data.review;
     });
 };
 
-export const postComment = (review_id, commentData) => {
-  console.log(review_id, commentData, "<< review id and comment data");
+export const patchCommentVote = (comment_id, num) => {
   return gamesApi
-    .post(`/reviews/${review_id}/comments`, {
-      username: commentData.username,
-      body: commentData.body,
-    })
+    .patch(`/comments/${comment_id}`, { inc_votes: num })
+    .then(({ data }) => {
+      return data.comment;
+    });
+};
+
+// -------- POST ---------- //
+
+export const postComment = (review_id, commentData) => {
+  return gamesApi
+    .post(`/reviews/${review_id}/comments`, commentData)
     .then(({ data }) => {
       console.log(data.comment, "<< new comment in api");
       return data.comment;
     });
+};
+
+export const postReview = (newReview) => {
+  return gamesApi.post(`/reviews`, newReview).then(({ data }) => {
+    return data.reviews;
+  });
+};
+
+export const postUser = (newUser) => {
+  return gamesApi.post(`/users`, newUser).then(({ data }) => {
+    console.log(data.user, "<< new user in the api");
+    return data.user;
+  });
+};
+
+// -------- DELETE ---------- //
+
+export const deleteComment = (comment_id) => {
+  return gamesApi.delete(`/comments/${comment_id}`).then(({ data }) => {
+    return data.comment;
+  });
 };

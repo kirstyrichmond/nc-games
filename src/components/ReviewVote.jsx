@@ -1,26 +1,21 @@
 import React, { useContext, useState } from 'react';
-import { patchVote } from '../utils/api';
+import { patchReviewVote } from '../utils/api';
 import { BsHandThumbsDown, BsHandThumbsUp } from "react-icons/bs";
 import { UserContext } from './Contexts/User-Context';
 import '../styles/vote.css'
 
-const Vote = ({ votes, owner, review_id }) => {
+const ReviewVote = ({ votes, owner, review_id }) => {
     const [voteChange, setVoteChange] = useState(0)
     const { loggedInUser } = useContext(UserContext)
     const isDisabled = loggedInUser.username === owner
 
-    // console.log((loggedInUser.username === owner), "<< review owner");
-    // console.log(votes, "<< votes: votes.jsx")
-    // console.log(voteChange, "<< vote change : vote.jsx");
-
-
     const upVote = () => {
-        patchVote(review_id, 1)
+        patchReviewVote(review_id, 1)
         setVoteChange((currChange) => currChange + 1)
     }
     
     const downVote = () => {
-        patchVote(review_id, -1)
+        patchReviewVote(review_id, -1)
         setVoteChange((currChange) => currChange - 1)
     }
 
@@ -43,4 +38,4 @@ const Vote = ({ votes, owner, review_id }) => {
   )
 };
 
-export default Vote;
+export default ReviewVote;

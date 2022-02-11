@@ -1,0 +1,19 @@
+.user-list {
+  text-align: center;
+  padding: 0px;
+}
+
+.user-list-user {
+  list-style-type: none;
+  margin-bottom: 50px;
+  text-align: center;
+}
+
+.users-title {
+  margin-top: 20px;
+  margin-bottom: 40px;
+}
+
+.user-list-photo {
+  width: 150px;
+}

@@ -6,16 +6,37 @@ import { Routes, Route, BrowserRouter } from "react-router-dom";
 import Categories from "./components/Categories";
 import ReviewList from "./components/ReviewList";
 import ReviewPage from "./components/ReviewPage";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { UserContext } from "./components/Contexts/User-Context";
+import Users from "./components/Users";
+import User from "./components/User";
 
 function App() {
-  const [loggedInUser, setLoggedInUser] = useState({
-    username: "happyamy2016",
-    name: "Kirsty Richmond",
-    avatar_url:
-      "https://media-exp1.licdn.com/dms/image/C4D03AQFELvuGKHDIAA/profile-displayphoto-shrink_400_400/0/1627666728379?e=1649894400&v=beta&t=EpTh-4qe_hDTcsEgeWF3bVXa7_U6cj2B7IMZ0Ho1tUc",
-  });
+  const [user, setUser] = useState(null);
+  const [loggedInUser, setLoggedInUser] = useState(null);
+  const [loggedIn, setLoggedIn] = useState(false);
+
+  const saveLoggedInUser = () => {
+    localStorage.setItem("user", JSON.stringify(user));
+  };
+
+  const getLoggedInUser = () => {
+    if (localStorage.getItem("user") === null) {
+      localStorage.setItem("user", JSON.stringify(null));
+    } else {
+      let userLocal = JSON.parse(localStorage.getItem("user"));
+      setUser(userLocal);
+      setLoggedIn(true);
+    }
+  };
+
+  useEffect(() => {
+    getLoggedInUser();
+  }, []);
+
+  useEffect(() => {
+    saveLoggedInUser();
+  }, [user, loggedIn]);
 
   const isLoggedIn = loggedInUser !== null;
 
@@ -33,6 +54,8 @@ function App() {
             <Route path="/reviews/:category" element={<ReviewList />} />
             <Route path="/reviews" element={<ReviewList />} />
             <Route path="/review/:review_id" element={<ReviewPage />} />
+            <Route path="/users" element={<Users />} />
+            <Route path="/users/:username" element={<User />} />
           </Routes>
         </div>
       </UserContext.Provider>

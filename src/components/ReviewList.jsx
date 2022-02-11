@@ -4,9 +4,12 @@ import '../styles/review-list.css'
 import ReviewPage from './ReviewPage';
 import { Link, useParams } from 'react-router-dom';
 import SortAndOrderBy from './SortAndOrderBy';
+import PostReview from './PostReview';
+import PostReviewModal from './PostReviewModal';
 
 const ReviewList = () => {
     const [reviews, setReviews] = useState([])
+    const [openModal, setOpenModal] = useState(false)
 
     const { category } = useParams()
 
@@ -26,6 +29,15 @@ const ReviewList = () => {
           <h2 className='all-reviews-header'>{category ? category : "all reviews"}</h2>
           <div className='sort-by'>
               <SortAndOrderBy updateReviews={updateReviews} category={category} />
+          </div>
+          <div className='post-review'>
+          {/* <Link to ="/add-review">
+              <button type="submit">Add review</button>
+            </Link> */}
+            <br />
+            <button className='open-modal-button' onClick={() => {setOpenModal(true)}}>Add review</button>
+            {openModal && <PostReview closeModal={setOpenModal} />}
+
           </div>
           <ul className='reviews-list'>
               {reviews.map(review => {
