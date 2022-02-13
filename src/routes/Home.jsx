@@ -1,25 +1,32 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { Link } from 'react-router-dom'
+// import { Link } from 'react-router-dom'
 import '../styles/home.css'
 import { getUsers } from '../utils/api';
-import { UserContext } from './Contexts/User-Context';
+// import { UserContext } from '../components/Contexts/User-Context';
 import UserLogin from './UserLogin';
-import UserRegister from './UserRegister';
-import Users from './Users';
+// import UserRegister from '../components/UserRegister';
+// import Users from '../components/Users';
 
 
 const Home = () => {
-  const { loggedInUser } = useContext(UserContext)
+  // const { loggedInUser } = useContext(UserContext)
+  const [isLoading, setIsLoading] = useState(true)
+
+
 
   const [users, setUsers] = useState([])
 
   useEffect(() => {
       getUsers().then(userList => {
         setUsers(userList)
+        setIsLoading(false)
       })
-  }, [users])
+  }, [])
 
-  return (
+
+  return isLoading ? (
+       <h3>loading...</h3>
+    ) : (
     <div>
       {/* <UserRegister /> */}
       <UserLogin />
@@ -40,6 +47,7 @@ const Home = () => {
                 // })
             }
     </div>
+        
   )
 
 

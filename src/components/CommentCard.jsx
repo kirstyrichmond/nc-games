@@ -1,16 +1,19 @@
 import React from 'react'
-import { useContext } from 'react/cjs/react.development';
-import { deleteComment } from '../utils/api'
+import { useContext, useEffect } from 'react';
+import { deleteComment, getComments } from '../utils/api'
 import CommentVote from './CommentVote';
 import { UserContext } from './Contexts/User-Context';
-import Vote from './ReviewVote';
+// import Vote from './ReviewVote';
 
-const CommentCard = ({ comment }) => {
+const CommentCard = ({ comment, review_id, setComments }) => {
   const { loggedInUser } = useContext(UserContext)
   
   const handleDelete = (event) => {
-      deleteComment(comment.comment_id)
-      event.preventDefault()
+      deleteComment(comment.comment_id).then(() => {
+        getComments(review_id).then(comments => {
+          setComments(comments)
+        })
+      })
     }
 
   return (

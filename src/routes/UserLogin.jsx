@@ -1,12 +1,11 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { getUserByUsername, getUsers } from '../utils/api'
-import { UserContext } from './Contexts/User-Context'
+import { UserContext } from '../components/Contexts/User-Context'
 
 const UserLogin = () => {
-
     const [users, setUsers] = useState([])
-    const { setLoggedInUser } = useContext(UserContext)
+    const { loggedInUser, setLoggedInUser } = useContext(UserContext)
     const navigate = useNavigate()
 
     useEffect(() => {
@@ -19,6 +18,8 @@ const UserLogin = () => {
         setLoggedInUser(newUser)
         navigate(`/categories`)
     }
+
+    
 
     // const [usernameInput, setUsernameInput] = useState('')
     // const {loggedInUser, setLoggedInUser, isLoggedIn} = useContext(UserContext)
@@ -51,16 +52,18 @@ const UserLogin = () => {
         {
                 users.map(user => {
                     return (
-                        <>
-                        {/* <Link to={`/users/${user.username}`}> */}
                         <li className='user-list-user' key={user.username}>
                             <h3 className='user-list-username'>{user.username}</h3>
                             {/* <p className='user-list-name'>{user.name}</p> */}
                             <img className='user-list-photo' src={user.avatar_url} alt={user.username} />
-                            <button onClick={() => login(user)}>Log in</button>
+                            {
+                                (loggedInUser === null || loggedInUser.username !== user.username) ?
+                                <button onClick={() => login(user)}>Log in</button>
+                            : 
+                                <button onClick={() => login(user)}>Continue...</button>
+                            }
+                            
                         </li>
-                        {/* </Link> */}
-                        </>
                     )
                 })
             }

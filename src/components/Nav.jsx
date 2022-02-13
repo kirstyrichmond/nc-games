@@ -1,13 +1,14 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { getCategories } from '../utils/api';
 import { UserContext } from './Contexts/User-Context';
 import '../styles/nav.css'
 
 const Nav = () => {
     const [categories, setCategories] = useState([])
+    let location = useLocation()
 
-    // const { loggedInUser } = useContext(UserContext)
+    const { loggedInUser } = useContext(UserContext)
 
 
     useEffect(() => {
@@ -15,6 +16,7 @@ const Nav = () => {
             setCategories(categoriesFromApi)
         })
     }, [])
+
 
   return (
    <div className='nav'>

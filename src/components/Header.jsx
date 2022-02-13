@@ -7,12 +7,9 @@ const Header = () => {
     const { loggedInUser, setLoggedInUser } = useContext(UserContext)
     const navigate = useNavigate()
 
-    console.log(loggedInUser);
-
     const logOut = () => {
       setLoggedInUser(null)
       navigate(`/`)
-
     }
 
   return <div className='header'>

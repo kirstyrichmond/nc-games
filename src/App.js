@@ -1,23 +1,24 @@
 import "./styles/App.css";
 import Header from "./components/Header";
-import Home from "./components/Home";
+import Home from "./routes/Home";
 import Nav from "./components/Nav";
 import { Routes, Route, BrowserRouter } from "react-router-dom";
-import Categories from "./components/Categories";
-import ReviewList from "./components/ReviewList";
-import ReviewPage from "./components/ReviewPage";
-import { useEffect, useState } from "react";
+import Categories from "./routes/Categories";
+import ReviewList from "./routes/ReviewList";
+import ReviewPage from "./routes/ReviewCard";
+import { useContext, useEffect, useState } from "react";
 import { UserContext } from "./components/Contexts/User-Context";
-import Users from "./components/Users";
-import User from "./components/User";
+import Users from "./routes/Users";
+import User from "./routes/User";
 
 function App() {
-  const [user, setUser] = useState(null);
+  // const [user, setUser] = useState(null);
   const [loggedInUser, setLoggedInUser] = useState(null);
   const [loggedIn, setLoggedIn] = useState(false);
+  // const response = await axios.post()
 
   const saveLoggedInUser = () => {
-    localStorage.setItem("user", JSON.stringify(user));
+    localStorage.setItem("user", JSON.stringify(loggedInUser));
   };
 
   const getLoggedInUser = () => {
@@ -25,7 +26,7 @@ function App() {
       localStorage.setItem("user", JSON.stringify(null));
     } else {
       let userLocal = JSON.parse(localStorage.getItem("user"));
-      setUser(userLocal);
+      setLoggedInUser(userLocal);
       setLoggedIn(true);
     }
   };
@@ -36,7 +37,7 @@ function App() {
 
   useEffect(() => {
     saveLoggedInUser();
-  }, [user, loggedIn]);
+  }, [loggedInUser, loggedIn]);
 
   const isLoggedIn = loggedInUser !== null;
 
@@ -46,8 +47,8 @@ function App() {
         value={{ loggedInUser, setLoggedInUser, isLoggedIn }}
       >
         <div className="App">
-          <Header />
-          <Nav />
+          {/* <Header />
+          <Nav /> */}
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/categories" element={<Categories />} />

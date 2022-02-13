@@ -1,7 +1,7 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useContext, useEffect, useState } from 'react/cjs/react.development'
-import { getCategories, postReview } from '../utils/api'
+import { getAllReviews, getCategories, postReview } from '../utils/api'
 import { UserContext } from './Contexts/User-Context'
 
 const PostReview = ({ closeModal }) => {
@@ -9,6 +9,7 @@ const PostReview = ({ closeModal }) => {
     const { loggedInUser } = useContext(UserContext)
     // const [addReview, setAddReview] = useState("")
     const [categories, setCategories] = useState([])
+    const [reviews, setReviews] = useState([])
     const [newReviewTitle, setNewReviewTitle] = useState("")
   const [newReviewPhoto, setNewReviewPhoto] = useState("")
   const [newReviewBody, setNewReviewBody] = useState("")
@@ -20,8 +21,6 @@ const PostReview = ({ closeModal }) => {
           setCategories(catSelection)
         })
       }, [])
-
-      console.log(categories, "<< category options in form");
 
       const handleTitleChange = (event) => {
         setNewReviewTitle(event.target.value)
@@ -49,17 +48,30 @@ const PostReview = ({ closeModal }) => {
 
        const newReview = {
             title: newReviewTitle,
-            owner: loggedInUser,
+            owner: loggedInUser.username,
             review_img_url: newReviewPhoto,
             review_body: newReviewBody,
             designer: newReviewDesigner,
             category: newReviewCategory
        }
 
+      //  console.log(newReviewTitle, "<< new review title");
+      //  console.log(loggedInUser.username, "<< new review owner");
+      //  console.log(newReviewPhoto, "<< new review photo");
+      //  console.log(newReviewBody, "<< new review body");
+      //  console.log(newReviewDesigner, "<< new review designer");
+      //  console.log(newReviewCategory, "<< new review category");
        postReview(newReview).then((review) => {
-           console.log(review, "<< review in post review");
-           const { review_id } = review
-           navigate(`/reviews/${review_id}`)
+           console.log(review[0], "<< new review in post review");
+          //  return review[0]
+          //  getAllReviews()
+            getAllReviews((update) => {
+              console.log(update, "<< new list of reviews");
+              return [review[0], ...update]
+            })
+
+          //  const { review_id } = review
+          //  navigate(`/reviews/${review_id}`)
        })
        .catch((err) => {
            console.log(err);
@@ -79,7 +91,7 @@ const PostReview = ({ closeModal }) => {
                   <input required
                       type='text'
                       value={newReviewTitle}
-                      id='reivewTitle'
+                      id='reviewTitle'
                       name='reviewTitle'
                       placeholder='title'
                       onChange={handleTitleChange} />
@@ -88,7 +100,7 @@ const PostReview = ({ closeModal }) => {
                   <input
                       type='url'
                       value={newReviewPhoto}
-                      id='reivewPhoto'
+                      id='reviewPhoto'
                       name='reviewPhoto'
                       placeholder='photo URL'
                       onChange={handlePhotoChange} />
@@ -97,7 +109,7 @@ const PostReview = ({ closeModal }) => {
                     <input
                         type='text'
                         value={newReviewBody}
-                        id='reivewBody'
+                        id='reviewBody'
                         name='reviewBody'
                         placeholder='description'
                         onChange={handleBodyChange} />
@@ -106,7 +118,7 @@ const PostReview = ({ closeModal }) => {
                     <input
                         type='text'
                         value={newReviewDesigner}
-                        id='reivewDesigner'
+                        id='reviewDesigner'
                         name='reviewDesigner'
                         placeholder='designer'
                         onChange={handleDesignerChange} />

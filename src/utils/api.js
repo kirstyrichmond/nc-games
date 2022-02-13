@@ -82,7 +82,8 @@ export const postComment = (review_id, commentData) => {
 
 export const postReview = (newReview) => {
   return gamesApi.post(`/reviews`, newReview).then(({ data }) => {
-    return data.reviews;
+    console.log(data.review, "<< new review in api");
+    return data.review;
   });
 };
 
@@ -99,4 +100,16 @@ export const deleteComment = (comment_id) => {
   return gamesApi.delete(`/comments/${comment_id}`).then(({ data }) => {
     return data.comment;
   });
+};
+
+export const deleteReview = (review_id) => {
+  return gamesApi
+    .delete(`/reviews/${review_id}`)
+    .then(({ data }) => {
+      console.log(data.review, "<< deleted review");
+      return data.review;
+    })
+    .catch((err) => {
+      console.log(err);
+    });
 };
