@@ -1,5 +1,4 @@
-import React from 'react'
-import { useContext, useState } from 'react/cjs/react.development'
+import React, { useContext, useState } from 'react'
 import { patchCommentVote } from '../utils/api'
 import { UserContext } from './Contexts/User-Context'
 import { BsHandThumbsDown, BsHandThumbsUp, BsHandThumbsUpFill, BsHandThumbsDownFill } from "react-icons/bs";
