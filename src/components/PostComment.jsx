@@ -1,5 +1,4 @@
-import React, { useContext, useState } from 'react';
-import { useEffect } from 'react/cjs/react.development';
+import React, { useEffect, useContext, useState } from 'react';
 import { getComments, postComment } from '../utils/api';
 import { UserContext } from './Contexts/User-Context';
 
