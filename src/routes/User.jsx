@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
-import { useContext } from 'react/cjs/react.development'
 import { getAllReviews, getUserByUsername } from '../utils/api'
 import { UserContext } from '../components/Contexts/User-Context'
 import '../styles/user.css'
