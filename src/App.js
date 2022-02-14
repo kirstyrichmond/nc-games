@@ -55,7 +55,7 @@ function App() {
             <Route path="/reviews/:category" element={<ReviewList />} />
             <Route path="/reviews" element={<ReviewList />} />
             <Route path="/review/:review_id" element={<ReviewPage />} />
-            <Route path="/users" element={<Users />} />
+            {/* <Route path="/users" element={<Users />} /> */}
             <Route path="/users/:username" element={<User />} />
           </Routes>
         </div>
