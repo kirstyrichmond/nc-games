@@ -29,6 +29,7 @@
   margin: 0px;
   padding: 10px;
   text-transform: capitalize;
+  font-family: 'Short Stack', cursive;
 }
 
 .review-list-comment-count {

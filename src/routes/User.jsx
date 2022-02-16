@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react'
-import { Link, useParams } from 'react-router-dom'
+import { Link, useNavigate, useParams } from 'react-router-dom'
 import { getAllReviews, getUserByUsername } from '../utils/api'
 import { UserContext } from '../components/Contexts/User-Context'
 import '../styles/user.css'
@@ -10,9 +10,15 @@ import moment from 'moment'
 const User = () => {
     const [singleUser, setSingleUser] = useState({})
     const { username } = useParams()
-    const { loggedInUser } = useContext(UserContext)
+    const { loggedInUser, setLoggedInUser } = useContext(UserContext)
     const [userReviews, setUserReviews] = useState([])
     const [isLoading, setIsLoading] = useState(true)
+    const navigate = useNavigate()
+
+    const logOut = () => {
+      setLoggedInUser(null)
+      navigate(`/`)
+    }
 
     useEffect(() => {
         getUserByUsername(username).then((user) => {
@@ -36,6 +42,7 @@ const User = () => {
         <h3>loading...</h3>
      ) : (
         <><Header /><Nav /><div>
+            <button onClick={() => logOut()}>log out</button>
                 <h3 className='user-profile-username'>{username}</h3>
                 <p className='user-profile-name'>{singleUser.name}</p>
                 <img className='user-profile-photo' src={singleUser.avatar_url} alt={username} />

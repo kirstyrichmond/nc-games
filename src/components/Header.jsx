@@ -5,12 +5,12 @@ import { UserContext } from './Contexts/User-Context';
 
 const Header = () => {
     const { loggedInUser, setLoggedInUser } = useContext(UserContext)
-    const navigate = useNavigate()
+    // const navigate = useNavigate()
 
-    const logOut = () => {
-      setLoggedInUser(null)
-      navigate(`/`)
-    }
+    // const logOut = () => {
+    //   setLoggedInUser(null)
+    //   navigate(`/`)
+    // }
 
   return <div className='header'>
       <Link to={`/`}>
@@ -25,7 +25,7 @@ const Header = () => {
            {/* <p className='header-name'>{loggedInUser.name}</p> */}
            <img className='header-profile-pic' alt={loggedInUser.name} src={loggedInUser.avatar_url} />
            </Link>
-           <button onClick={() => logOut()}>log out</button>
+           {/* <button onClick={() => logOut()}>log out</button> */}
        </div>
 
        : 

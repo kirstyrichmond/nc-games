@@ -21,14 +21,16 @@ const Categories = () => {
         <h3>loading...</h3>
      ) : (
         <><Header /><Nav /><main className='categories'>
-                <h2>All Categories</h2>
+            <Link to={`/reviews`}>
+                <h3 className='all-categories'>All Categories</h3>
+                </Link>
                 <ul className='categories-list'>
                     {categories.map(category => {
                         return (
                             <Link to={`/reviews/${category.slug}`} key={category.slug}>
-                                <li className='category-list-item'>
+                                <li className={`category-list-item ${category.slug}`}>
                                     <h3>{category.slug}</h3>
-                                    <p>{category.description}</p>
+                                    {/* <p>{category.description}</p> */}
                                 </li>
                             </Link>
                         );

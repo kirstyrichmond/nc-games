@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import { getAllReviews, getCategories, postReview } from '../utils/api'
 import { UserContext } from './Contexts/User-Context'
 
-const PostReview = ({ closeModal }) => {
+const PostReview = ({ handleClose }) => {
     const navigate = useNavigate()
     const { loggedInUser } = useContext(UserContext)
     // const [addReview, setAddReview] = useState("")
@@ -60,18 +60,31 @@ const PostReview = ({ closeModal }) => {
       //  console.log(newReviewBody, "<< new review body");
       //  console.log(newReviewDesigner, "<< new review designer");
       //  console.log(newReviewCategory, "<< new review category");
-       postReview(newReview).then((review) => {
-           console.log(review[0], "<< new review in post review");
+       postReview(newReview).then(() => {
+          //  console.log(review[0], "<< new review in post review");
           //  return review[0]
           //  getAllReviews()
-            getAllReviews((update) => {
-              console.log(update, "<< new list of reviews");
-              return [review[0], ...update]
+          // handleClose()
+          //   navigate('/reviews');
+          //   return [review, ...reviews]
+
+        
+            getAllReviews().then((updatedComments) => {
+                setReviews(updatedComments)
             })
+            // setNewComment('')
+    })
+            
+              
+              // setTimeout(function () {
+              //   <p>Posted!</p>
+              //   handleClose()
+              // }, 2000);
+            // })
 
           //  const { review_id } = review
           //  navigate(`/reviews/${review_id}`)
-       })
+      //  })
        .catch((err) => {
            console.log(err);
        })
@@ -80,9 +93,9 @@ const PostReview = ({ closeModal }) => {
 
   return (
       <><div>
-          <div className='title-close-btn'>
+          {/* <div className='title-close-btn'>
               <button onClick={() => closeModal(false)}>X</button>
-          </div>
+          </div> */}
       </div><div>
               <h3>Add review:</h3>
               <form onSubmit={handleSubmit}>

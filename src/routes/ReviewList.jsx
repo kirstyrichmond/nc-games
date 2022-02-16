@@ -8,12 +8,30 @@ import PostReview from '../components/PostReview';
 import Header from '../components/Header';
 import Nav from '../components/Nav';
 import moment from 'moment';
+import Fab from '@mui/material/Fab';
+import AddIcon from '@mui/icons-material/Add';
+import { Box, Button, Modal, Typography } from '@mui/material';
 // import PostReviewModal from '../components/PostReviewModal';
+
+const style = {
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+    width: 400,
+    bgcolor: 'background.paper',
+    border: '2px solid #000',
+    boxShadow: 24,
+    p: 4,
+  };
 
 const ReviewList = () => {
     const [reviews, setReviews] = useState([])
-    const [openModal, setOpenModal] = useState(false)
+    // const [openModal, setOpenModal] = useState(false)
     const [isLoading, setIsLoading] = useState(true)
+    const [open, setOpen] = React.useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
 
     const { category } = useParams()
 
@@ -23,6 +41,12 @@ const ReviewList = () => {
             setIsLoading(false)
         })
     }, [category])
+
+    useEffect(() => {
+        getAllReviews().then((data) => {
+          setReviews(data);
+        });
+      }, []);
 
     const updateReviews = (reviews) => {
         setReviews(reviews)
@@ -43,8 +67,38 @@ const ReviewList = () => {
         <button type="submit">Add review</button>
       </Link> */}
                     <br />
-                    <button className='open-modal-button' onClick={() => { setOpenModal(true); } }>Add review</button>
-                    {openModal && <PostReview closeModal={setOpenModal} />}
+                    
+                    {/* <button className='open-modal-button' onClick={() => { setOpenModal(true); } }>
+                        <Fab color="primary" aria-label="add">
+                            <AddIcon />
+                        </Fab>
+                    </button> */}
+
+                    <Button onClick={() => { handleOpen(true)}}>
+                    <Fab color="primary" aria-label="add">
+                            <AddIcon />
+                        </Fab>
+                    </Button>
+                    <Modal
+                    open={open}
+                    onClose={handleClose}
+                    aria-labelledby="modal-modal-title"
+                    aria-describedby="modal-modal-description"
+                    >
+                    <Box sx={style}>
+                        <div className='title-close-btn'>
+                            <button onClick={() => handleClose()}>X</button>
+                        </div>
+                        {/* <Typography id="modal-modal-title" variant="h6" component="h2">
+                        Add a review:
+                        </Typography> */}
+                        <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+                        <PostReview handleClose={handleClose} />
+                        </Typography>
+                    </Box>
+
+                    </Modal>
+                    {/* {open && <PostReview closeModal={setOpen} />} */}
 
                 </div>
                 <ul className='reviews-list'>

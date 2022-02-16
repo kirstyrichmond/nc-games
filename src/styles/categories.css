@@ -1,11 +1,71 @@
-.category-list-item {
+.category-list-item,
+.all-categories {
   background-color: rgb(222, 222, 222);
-  list-style-type: none;
+  font-family: 'Short Stack', cursive;  list-style-type: none;
   margin: 10px 0px;
-  padding: 5px 5px;
+  padding: 20px 5px;
+  border-radius: 8px;
+  /* background-image: url("https://www.giantfreakinrobot.com/wp-content/uploads/2019/11/gloom-900x675.jpg");
+  background-size: cover; */
 }
 
 .categories-list {
-  margin: 0px 20px 0px 20px;
+  margin: 0px;
   padding: 0px 20px;
+}
+
+.all-categories {
+  background: linear-gradient(0deg, rgba(1, 1, 1, 0.3), rgba(0, 0, 0, 0.589)),
+    url(https://media.timeout.com/images/105627949/750/422/image.jpg);
+  background-size: cover;
+  color: white;
+  margin: 10px 20px;
+}
+
+.strategy {
+  background: linear-gradient(0deg, rgba(1, 1, 1, 0.3), rgba(0, 0, 0, 0.589)),
+    url(https://thethoughtfulgamer.com/wp-content/uploads/2017/03/Game-in-action-e1489040094832.jpg);
+  background-size: cover;
+  color: white;
+}
+
+.hidden-roles {
+  background: linear-gradient(0deg, rgba(1, 1, 1, 0.3), rgba(0, 0, 0, 0.589)),
+    url(https://i1.wp.com/bestplay.co/wp-content/uploads/2017/01/bsg-1024x474.jpg?resize=1024%2C474&ssl=1);
+  background-size: cover;
+  color: white;
+}
+
+.dexterity {
+  background: linear-gradient(0deg, rgba(1, 1, 1, 0.3), rgba(0, 0, 0, 0.589)),
+    url(https://boardsandbees.files.wordpress.com/2014/02/crok.jpg);
+  background-size: cover;
+  color: white;
+}
+.push-your-luck {
+  background: linear-gradient(0deg, rgba(1, 1, 1, 0.3), rgba(0, 0, 0, 0.589)),
+    url(https://www.theboardgamefamily.com/wp-content/uploads/2021/02/Cubitos_Featured-390x205.jpg);
+  background-size: cover;
+  color: white;
+}
+.roll-and-write {
+  background: linear-gradient(0deg, rgba(1, 1, 1, 0.3), rgba(0, 0, 0, 0.589)),
+    url(https://www.thedarkimp.com/wp-content/uploads/2019/11/rollingranch.jpg);
+  background-size: cover;
+  color: white;
+}
+
+.deck-building {
+  background: linear-gradient(0deg, rgba(1, 1, 1, 0.3), rgba(0, 0, 0, 0.589)),
+    url(https://i1.wp.com/boardgamedragons.com/wp-content/uploads/2013/05/heros1.jpg);
+  background-size: cover;
+  color: white;
+}
+
+.engine-building {
+  background: linear-gradient(0deg, rgba(1, 1, 1, 0.3), rgba(0, 0, 0, 0.589)),
+    url(https://assets.dicebreaker.com/settlers-of-catan-board-game-gameplay.jpg/BROK/thumbnail/1600x800/format/jpg/quality/80/settlers-of-catan-board-game-gameplay.jpg);
+  background-size: cover;
+  background-position: 90% 90%;
+  color: white;
 }
