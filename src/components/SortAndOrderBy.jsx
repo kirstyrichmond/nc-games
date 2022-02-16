@@ -19,8 +19,8 @@ const SortAndOrderBy = ({ updateReviews, category }) => {
     useEffect(() => {
         getAllReviews(category, sortBy, order).then((sortedReviews) => {
             updateReviews(sortedReviews)
-        }, [category, sortBy, order])
-    })
+        }
+    )}, [category, sortBy, order])
 
     // const handleSubmit = (event) => {
     //     event.preventDefault()
