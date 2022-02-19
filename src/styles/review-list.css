@@ -10,29 +10,50 @@
 }
 
 .review-list-item {
-  background-color: rgb(222, 222, 222);
+  background-color: rgb(255, 255, 255);
   list-style-type: none;
   margin: 15px 0px;
   padding: 5px 10px;
+  border-bottom: 1px solid rgb(59, 153, 242);
 }
 
 .review-list-title {
   margin: 0px;
   padding: 10px 5px;
+  font-size: 1.5em;
 }
 
 .review-list-photo {
-  width: 200px;
+  width: 65vw;
 }
 
 .all-reviews-header {
   margin: 0px;
   padding: 10px;
   text-transform: capitalize;
-  font-family: 'Short Stack', cursive;
+  font-family: "Short Stack", cursive;
 }
 
 .review-list-comment-count {
   margin: 0px;
   padding: 0px 0px 0px 5px;
+}
+
+.review-list-votes {
+  display: flex;
+  justify-content: space-between;
+}
+
+.comment-count {
+  display: flex;
+  align-items: center;
+}
+
+.name-created-at {
+  display: flex;
+  justify-content: space-between
+}
+
+.review-list-category {
+  color: rgb(9, 110, 192);
 }

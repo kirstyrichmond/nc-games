@@ -10,7 +10,8 @@ import Nav from '../components/Nav';
 import moment from 'moment';
 import Fab from '@mui/material/Fab';
 import AddIcon from '@mui/icons-material/Add';
-import { Box, Button, Modal, Typography } from '@mui/material';
+import { Box, Button, Icon, Modal, Typography } from '@mui/material';
+import ChatBubbleOutlineRoundedIcon from '@mui/icons-material/ChatBubbleOutlineRounded';
 // import PostReviewModal from '../components/PostReviewModal';
 
 const style = {
@@ -106,14 +107,28 @@ const ReviewList = () => {
                         return (
                             <Link to={`/review/${review.review_id}`} key={review.review_id}>
                                 <li className='review-list-item'>
-                                    <h3 className='review-list-title'>{review.title}</h3>
+                                    <div className='name-created-at'>
+                                        <div className='review-list-owner'>
+                                    <p>{review.owner}</p>
+                                        </div>
+                                        <div className='review-list-created-at'>
+                                    <p>{moment(review.created_at).startOf('hour').fromNow()}</p>
+                                        </div>
+                                    </div>
                                     <img className='review-list-photo' src={review.review_img_url} alt={review.title} />
-                                    <p className='review-list-owner'>{review.owner}</p>
-                                    <p className='review-list-category'>{review.category}</p>
-                                    <p className='review-list-votes'>Votes: {review.votes}</p>
-                                    <p className='review-list-comment-count'>Comments: {review.comment_count}</p>
-                                    <p className='review-list-created-at'>{moment(review.created_at).startOf('hour').fromNow()}</p>
-
+                                    <h3 className='review-list-title'>{review.title}</h3>
+                                    <div>
+                                        <div className='review-list-votes'>
+                                    <p> {review.votes} votes</p>
+                                    <div className='review-list-category'>
+                                    <p>{review.category}</p>
+                                    </div>
+                                            <div className='comment-count'>
+                                                <ChatBubbleOutlineRoundedIcon /> 
+                                            {review.comment_count}
+                                        </div>
+                                    </div>
+                                    </div>
                                 </li>
                             </Link>
 

@@ -2,6 +2,7 @@ import React, { useContext, useState } from 'react'
 import { patchCommentVote } from '../utils/api'
 import { UserContext } from './Contexts/User-Context'
 import { BsHandThumbsDown, BsHandThumbsUp, BsHandThumbsUpFill, BsHandThumbsDownFill } from "react-icons/bs";
+import '../styles/vote.css'
 
 const CommentVote = ({ comment }) => {
     const { author, comment_id, votes } = comment
@@ -62,16 +63,17 @@ const CommentVote = ({ comment }) => {
   return (
 
     <div className='vote-container'>
-        <div className='thumbs-up-btn'>
-        {
-            loggedInUser.username !== author ? <button onClick={() => upVoteFunc()} >
-            {
-                upVote ? <BsHandThumbsUpFill className='thumbs-up-fill' />
-                :
-                <BsHandThumbsUp className='thumbs-up-outline' />
-            }
-        </button> : null
-        }
+         <div className='thumbs-down-btn'>
+
+{
+    <button disabled={isDisabled} className='vote-button' onClick={() => upVoteFunc()} >
+    {
+        (loggedInUser.username !== author) && upVote ? <BsHandThumbsUpFill className='thumbs-down-fill' />
+        :
+        <BsHandThumbsUp className='thumbs-down-outline' />
+    }
+</button> 
+}
         </div>
         <div className='vote-text'>
             { votes + voteChange}
@@ -79,13 +81,13 @@ const CommentVote = ({ comment }) => {
         <div className='thumbs-down-btn'>
 
         {
-            loggedInUser.username !== author ? <button onClick={() => downVoteFunc()} >
+            <button disabled={isDisabled} className='vote-button' onClick={() => downVoteFunc()} >
             {
-                downVote ? <BsHandThumbsDownFill className='thumbs-down-fill' />
+                (loggedInUser.username !== author) && downVote ? <BsHandThumbsDownFill className='thumbs-down-fill' />
                 :
                 <BsHandThumbsDown className='thumbs-down-outline' />
             }
-        </button> : null
+        </button>
         }
                 </div>
     </div>

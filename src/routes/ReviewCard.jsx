@@ -9,6 +9,7 @@ import DeleteComment from '../components/CommentCard';
 import Header from '../components/Header';
 import Nav from '../components/Nav';
 import moment from 'moment';
+import ChatBubbleOutlineRoundedIcon from '@mui/icons-material/ChatBubbleOutlineRounded';
 // import Comments from './Comments';
 // import { BsHandThumbsDown, BsHandThumbsUp } from "react-icons/bs";
 
@@ -51,26 +52,38 @@ const ReviewPage = () => {
                     {loggedInUser?.username === singleReview.owner ? <button onClick={() => handleDelete()}>Delete
                     </button> : null}
                 </div>
+                <div className='name-created-at'>
+                                        <div className='review-list-owner'>
+                                    <p>{singleReview.owner}</p>
+                                        </div>
+                                        <div className='review-list-created-at'>
+                                        <p className='review-list-created-at'>{moment(singleReview.created_at).startOf('hour').fromNow()}</p>
+                                            </div>
+                                            </div>
+
+
                 <h3 className='review-list-title'>{singleReview.title}</h3>
                 <img className='review-list-photo' src={singleReview.review_img_url} alt={singleReview.title} />
-                <p className='review-list-owner'>{singleReview.owner}</p>
+                {/* <p className='review-list-owner'>{singleReview.owner}</p> */}
                 {/* <p className='review-list-votes'>Votes: {singleReview.votes}</p> */}
                 <p>{singleReview.designer}</p>
                 <p>{singleReview.review_body}</p>
-                <p className='review-list-comment-count'>Comments: {singleReview.comment_count}</p>
                 <Link to={`/reviews/${singleReview.category}`}>
                     <p className='review-list-category'>{singleReview.category}</p>
                 </Link>
-                <p className='review-list-created-at'>{moment(singleReview.created_at).startOf('hour').fromNow()}</p>
+                {/* <p className='review-list-created-at'>{moment(singleReview.created_at).startOf('hour').fromNow()}</p> */}
+                <div className='vote-comment-count'>
                 <Vote votes={singleReview.votes} owner={singleReview.owner} review_id={review_id} />
+                <div className='comment-count'>
+                     <ChatBubbleOutlineRoundedIcon /> 
+                        {singleReview.comment_count}
+                 </div>
+                </div>
             </div><div className='comments-container'>
                     <h3>
-                        Comments...
+                        Comments({singleReview.comment_count})
                     </h3>
                     <div>
-                        <h3>
-                            Write comment...
-                        </h3>
                         <PostComment review_id={review_id} comments={comments} setComments={setComments} loggedInUser={loggedInUser} />
                     </div>
                     <div>

@@ -8,6 +8,7 @@ import Nav from '../components/Nav'
 const Users = () => {
   const [isLoading, setIsLoading] = useState(true)
   const [users, setUsers] = useState([])
+  const [pageSize, setPageSize] = React.useState(5);
 
   useEffect(() => {
       getUsers().then(userList => {
@@ -21,6 +22,8 @@ const Users = () => {
  ) : (
   <><Header /><Nav /><>
         <div>
+
+
           <h2 className='users-title'>Users</h2>
           <ul className='user-list'>
             {users.map(user => {

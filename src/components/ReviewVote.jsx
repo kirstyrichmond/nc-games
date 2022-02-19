@@ -11,27 +11,27 @@ const ReviewVote = ({ votes, owner, review_id }) => {
     const [upVote, setUpVote] = useState(false)
     const [downVote, setDownVote] = useState(false)
     
-    const saveUpVote = () => {
-        localStorage.setItem("votes", JSON.stringify(upVote))
-    }
+    // const saveUpVote = () => {
+    //     localStorage.setItem("votes", JSON.stringify(upVote))
+    // }
 
-    const getSavedUpVote = () => {
-        if (localStorage.getItem("votes") === null) {
-            localStorage.setItem("votes", JSON.stringify(null));
-        } else {
-            let votesLocal = JSON.parse(localStorage.getItem("votes"));
-            setUpVote(votesLocal);
-            // setLoggedIn(true);
-        }
-    }
+    // const getSavedUpVote = () => {
+    //     if (localStorage.getItem("votes") === null) {
+    //         localStorage.setItem("votes", JSON.stringify(null));
+    //     } else {
+    //         let votesLocal = JSON.parse(localStorage.getItem("votes"));
+    //         setUpVote(votesLocal);
+    //         // setLoggedIn(true);
+    //     }
+    // }
 
-    useEffect(() => {
-        getSavedUpVote()
-    }, [])
+    // useEffect(() => {
+    //     getSavedUpVote()
+    // }, [])
 
-    useEffect(() => {
-        saveUpVote()
-    }, [upVote])
+    // useEffect(() => {
+    //     saveUpVote()
+    // }, [upVote])
 
     const upVoteFunc = () => {
         if (!upVote) {
@@ -70,22 +70,22 @@ const ReviewVote = ({ votes, owner, review_id }) => {
     }
 
   return (
-    <div className='vote-container'>
+      <div className='vote-container'>
+        {/* <BsHandThumbsUp /> */}
         <div className='thumbs-up-btn'>
-        <button disabled={isDisabled} onClick={() => upVoteFunc()} >
+        <button className='vote-button' disabled={isDisabled} onClick={() => upVoteFunc()} >
             {
-                upVote ? <BsHandThumbsUpFill className='thumbs-up-fill' />
+                upVote ? <BsHandThumbsUpFill className='thumbs-down-fill' />
                 :
-                <BsHandThumbsUp className='thumbs-up-outline' />
+                <BsHandThumbsUp className='thumbs-down-outline' />
             }
-
         </button>
         </div>
         <div className='vote-text'>
             { votes + voteChange}
         </div>
         <div className='thumbs-down-btn'>
-        <button disabled={isDisabled} onClick={() => downVoteFunc()} >
+        <button className='vote-button' disabled={isDisabled} onClick={() => downVoteFunc()} >
             {
                 downVote ? <BsHandThumbsDownFill className='thumbs-down-fill' />
                 :

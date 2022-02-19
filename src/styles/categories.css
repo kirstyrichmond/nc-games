@@ -1,25 +1,34 @@
 .category-list-item,
 .all-categories {
   background-color: rgb(222, 222, 222);
-  font-family: 'Short Stack', cursive;  list-style-type: none;
-  margin: 10px 0px;
+  font-family: "Short Stack", cursive;
+  list-style-type: none;
+  /* margin: 10px 0px; */
   padding: 20px 5px;
   border-radius: 8px;
+  max-width: 550px;
+  min-height: 100px;
+  /* display: grid;
+  grid-gap: 1rem; */
   /* background-image: url("https://www.giantfreakinrobot.com/wp-content/uploads/2019/11/gloom-900x675.jpg");
   background-size: cover; */
 }
 
 .categories-list {
-  margin: 0px;
+  /* margin: 0px; */
   padding: 0px 20px;
+  display: grid;
+  grid-gap: 1rem;
 }
 
 .all-categories {
   background: linear-gradient(0deg, rgba(1, 1, 1, 0.3), rgba(0, 0, 0, 0.589)),
     url(https://media.timeout.com/images/105627949/750/422/image.jpg);
   background-size: cover;
+  /* background-repeat: no-repeat; */
   color: white;
-  margin: 10px 20px;
+  /* margin: 10px 20px; */
+  /* height: 75px; */
 }
 
 .strategy {
@@ -68,4 +77,16 @@
   background-size: cover;
   background-position: 90% 90%;
   color: white;
+}
+
+@media only screen and (min-width: 600px) {
+  .all-categories {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .category-list-item {
+    /* grid-template-columns: repeat(2, 1fr); */
+  }
+  .categories-list {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }

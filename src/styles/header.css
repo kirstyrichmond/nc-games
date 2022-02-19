@@ -25,3 +25,9 @@ a {
   border-radius: 50%;
   padding: 10px 10px;
 }
+
+@media only screen and (max-width: 600px) {
+  .header {
+    display: none;
+  }
+}
