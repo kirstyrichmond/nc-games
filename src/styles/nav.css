@@ -66,6 +66,7 @@ ul {
   padding: 0;
 } 
 
+
 a {
   /* color: #dadce1; */
   text-decoration: none;
@@ -86,6 +87,7 @@ a {
   display: flex;
   justify-content: space-between;
   position: fixed;
+  z-index: 1000;
   top: 0;
   width: 100%;
 }
@@ -103,6 +105,7 @@ a {
   align-items: center;
   justify-content: center;
   margin-right: 25px;
+  color: #dadce1;
 }
 
 .icon-button {
@@ -124,7 +127,7 @@ a {
   top: 56px;
   width: 300px;
   transform: translateX(-35%);
-  background-color: rgb(95, 45, 45);
+  background-color: var(--bg);
   border: var(--border);
   border-radius: var(--border-radius);
   padding: 1rem;
@@ -152,5 +155,10 @@ a {
 
 .nav-profile-pic {
   max-width: 75px;
+  padding-bottom: 40px 0px 40px 0px;
+  object-fit: contain;
+  overflow: hidden;
+  border-radius: 50%;
 }
+
 

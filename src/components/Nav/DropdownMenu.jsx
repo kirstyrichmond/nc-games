@@ -22,7 +22,7 @@ const DropdownMenu = () => {
   return (
     <><div className='dropdown'>
           <Link to={`/users/${loggedInUser.username}`}>
-          <DropdownItem>
+          <DropdownItem className='nav-profile'>
               <img className='nav-profile-pic' alt={loggedInUser.username} src={loggedInUser.avatar_url} />
           </DropdownItem>
       </Link>

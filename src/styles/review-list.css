@@ -58,6 +58,6 @@
   color: rgb(9, 110, 192);
 } */
 
-/* button {
+button, .sort-by {
   z-index: -1;
-} */
+}
