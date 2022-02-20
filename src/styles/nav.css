@@ -1,16 +1,156 @@
-.nav {
+/* .nav {
   padding: 5px;
   background-color: rgb(215, 237, 255);
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.logo {
+  font-size: 2rem;
+  padding: 0px 5px;
+  text-decoration: none;
 }
 
 .nav-link {
   color: black;
   padding: 0px 5px;
   text-decoration: none;
+  display: flex;
+  justify-content: space-around;
 }
 
-@media only screen and (min-width: 600px) {
-  .nav {
+.nav-profile-pic {
+  width: 5vw;
+}
+
+.hamburger {
+  background-color: transparent;
+  color: black;
+  border: 0;
+  font-size: 50px;
+  cursor: pointer;
+  display: none;
+}
+
+.hamburger:focus {
+  outline: none;
+}
+
+@media only screen and (max-width: 767px) {
+  /* .nav-link {
     display: none;
   }
+  .hamburger {
+    display: block;
+  } */
+/* }  */
+
+ * {
+  margin: 0px;
 }
+
+:root {
+  --bg: #242526;
+  --bg-accent: #484a4d;
+  --nav-size: 60px;
+  --border: 1px solid #474a4d;
+  --border-radius: 8px;
+  --speed: 500ms;
+  margin-top: 75px;
+}
+
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+} 
+
+a {
+  /* color: #dadce1; */
+  text-decoration: none;
+}
+
+.logo {
+  color: #dadce1;
+  margin: 0px;
+  display: flex;
+  align-items: center;
+}
+
+.navbar {
+  height: var(--nav-size);
+  background-color: var(--bg);
+  padding: 0 1rem;
+  border-bottom: var(--border);
+  display: flex;
+  justify-content: space-between;
+  position: fixed;
+  top: 0;
+  width: 100%;
+}
+
+.navbar-list {
+  max-width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.nav-item {
+  width: calc(var(--nav-size) * 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 25px;
+}
+
+.icon-button {
+  --button-size: calc(var(--nav-size) * 0.5);
+  width: var(--button-size);
+  height: var(--button-size);
+  /* background-color: #484a4d;  */
+  border-radius: 50%;
+  padding: 5px;
+  margin: 2px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.dropdown {
+  position: absolute;
+  z-index: 1;
+  top: 56px;
+  width: 300px;
+  transform: translateX(-35%);
+  background-color: rgb(95, 45, 45);
+  border: var(--border);
+  border-radius: var(--border-radius);
+  padding: 1rem;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  opacity: 1;
+}
+
+.menu-item {
+  height: 50px;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--border-radius);
+  /* transition: background var(--speed);  */
+  padding: 0.5rem;
+}
+
+ .menu-item:hover {
+  background-color: #525357;
+} 
+
+.nav-profile-pic {
+  max-width: 75px;
+}
+

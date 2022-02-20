@@ -4,7 +4,6 @@ import { getAllReviews, getUserByUsername } from '../utils/api'
 import { UserContext } from '../components/Contexts/User-Context'
 import '../styles/user.css'
 import Header from '../components/Header'
-import Nav from '../components/Nav'
 import moment from 'moment'
 
 const User = () => {
@@ -34,7 +33,8 @@ const User = () => {
     return isLoading ? (
         <h3>loading...</h3>
      ) : (
-        <><Header /><Nav /><div>
+        <>
+        <div>
                 <h3 className='user-profile-username'>{username}</h3>
                 <p className='user-profile-name'>{singleUser.name}</p>
                 <img className='user-profile-photo' src={singleUser.avatar_url} alt={username} />

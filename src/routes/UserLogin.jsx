@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { getUserByUsername, getUsers } from '../utils/api'
 import { UserContext } from '../components/Contexts/User-Context'
+import Nav from '../components/Nav/Navbar'
 
 const UserLogin = () => {
     const [users, setUsers] = useState([])

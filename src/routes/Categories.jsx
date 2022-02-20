@@ -2,8 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { getCategories } from '../utils/api';
 import '../styles/categories.css'
 import { Link, useParams } from 'react-router-dom';
-import Header from '../components/Header';
-import Nav from '../components/Nav';
 
 const Categories = () => {
     const [categories, setCategories] = useState([])
@@ -20,7 +18,7 @@ const Categories = () => {
     return isLoading ? (
         <h3>loading...</h3>
      ) : (
-        <><Header /><Nav /><main className='categories-container'>
+        <><main className='categories-container'>
             <Link to={`/reviews`}>
                 </Link>
                 <ul className='categories-list'>
@@ -34,6 +32,9 @@ const Categories = () => {
                                     <h3>{category.slug}</h3>
                                     {/* <p>{category.description}</p> */}
                                 </li>
+                                <div>
+                                    
+                                </div>
                             </Link>
                         );
                     })}

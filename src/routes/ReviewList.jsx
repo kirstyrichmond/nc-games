@@ -5,14 +5,14 @@ import '../styles/review-list.css'
 import { Link, useParams } from 'react-router-dom';
 import SortAndOrderBy from '../components/SortAndOrderBy';
 import PostReview from '../components/PostReview';
-import Header from '../components/Header';
-import Nav from '../components/Nav';
 import moment from 'moment';
 import Fab from '@mui/material/Fab';
 import AddIcon from '@mui/icons-material/Add';
 import { Box, Button, Icon, Modal, Typography } from '@mui/material';
 import ChatBubbleOutlineRoundedIcon from '@mui/icons-material/ChatBubbleOutlineRounded';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 // import PostReviewModal from '../components/PostReviewModal';
+<FontAwesomeIcon icon="fa-solid fa-circle-plus" />
 
 const style = {
     position: 'absolute',
@@ -58,7 +58,8 @@ const ReviewList = () => {
     return isLoading ? (
         <h3>loading...</h3>
      ) : (
-        <><Header /><Nav /><div className='review-list-main'>
+        <><div 
+        className='review-list-main'>
                 <h2 className='all-reviews-header'>{category ? category : "all reviews"}</h2>
                 <div className='sort-by'>
                     <SortAndOrderBy updateReviews={updateReviews} category={category} />
@@ -67,6 +68,7 @@ const ReviewList = () => {
                     {/* <Link to ="/add-review">
         <button type="submit">Add review</button>
       </Link> */}
+      {/* <FontAwesomeIcon icon="fa-regular fa-circle-plus" /> */}
                     <br />
                     
                     {/* <button className='open-modal-button' onClick={() => { setOpenModal(true); } }>

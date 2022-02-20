@@ -1,7 +1,8 @@
 import "./styles/App.css";
 import Header from "./components/Header";
 import Home from "./routes/Home";
-import Nav from "./components/Nav";
+import Navbar from "./components/Nav/Navbar";
+import NavItem from "./components/Nav/NavItem";
 import { Routes, Route, BrowserRouter } from "react-router-dom";
 import Categories from "./routes/Categories";
 import ReviewList from "./routes/ReviewList";
@@ -10,6 +11,8 @@ import { useContext, useEffect, useState } from "react";
 import { UserContext } from "./components/Contexts/User-Context";
 import Users from "./routes/Users";
 import User from "./routes/User";
+import MenuRoundedIcon from '@mui/icons-material/MenuRounded';
+import DropdownMenu from "./components/Nav/DropdownMenu";
 
 function App() {
   // const [user, setUser] = useState(null);
@@ -47,8 +50,11 @@ function App() {
         value={{ loggedInUser, setLoggedInUser, isLoggedIn }}
       >
         <div className="App">
-          {/* <Header />
-          <Nav /> */}
+          <Navbar>
+            <NavItem icon={<MenuRoundedIcon/>}>
+              <DropdownMenu />
+            </NavItem> 
+          </Navbar>
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/categories" element={<Categories />} />

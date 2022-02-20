@@ -6,8 +6,6 @@ import Vote from '../components/ReviewVote';
 import { UserContext } from '../components/Contexts/User-Context';
 import PostComment from '../components/PostComment';
 import DeleteComment from '../components/CommentCard';
-import Header from '../components/Header';
-import Nav from '../components/Nav';
 import moment from 'moment';
 import ChatBubbleOutlineRoundedIcon from '@mui/icons-material/ChatBubbleOutlineRounded';
 // import Comments from './Comments';
@@ -47,7 +45,7 @@ const ReviewPage = () => {
     return isLoading ? (
         <h3>loading...</h3>
      ) : (
-        <><Header /><Nav /><><div className='review-card'>
+        <><><div className='review-card'>
                 <div>
                     {loggedInUser?.username === singleReview.owner ? <button onClick={() => handleDelete()}>Delete
                     </button> : null}

@@ -1,39 +1,39 @@
-import React, { useContext } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import '../styles/header.css'
-import { UserContext } from './Contexts/User-Context';
+// import React, { useContext } from 'react';
+// import { Link, useNavigate } from 'react-router-dom';
+// import '../styles/header.css'
+// import { UserContext } from './Contexts/User-Context';
 
-const Header = () => {
-    const { loggedInUser, setLoggedInUser } = useContext(UserContext)
-    // const navigate = useNavigate()
+// const Header = () => {
+//     const { loggedInUser, setLoggedInUser } = useContext(UserContext)
+//     // const navigate = useNavigate()
 
-    // const logOut = () => {
-    //   setLoggedInUser(null)
-    //   navigate(`/`)
-    // }
+//     // const logOut = () => {
+//     //   setLoggedInUser(null)
+//     //   navigate(`/`)
+//     // }
 
-  return <div className='header'>
-      <Link to={`/`}>
-        <h1 className='header-logo'>NC-Games</h1>
-      </Link>
+//   return <div className='header'>
+//       <Link to={`/`}>
+//         <h1 className='header-logo'>NC-Games</h1>
+//       </Link>
 
-    {
-      loggedInUser !== null ? 
+//     {
+//       loggedInUser !== null ? 
 
-      <div className='header-profile'>
-        <Link to={`/users/${loggedInUser.username}`}>
-           {/* <p className='header-name'>{loggedInUser.name}</p> */}
-           <img className='header-profile-pic' alt={loggedInUser.name} src={loggedInUser.avatar_url} />
-           </Link>
-           {/* <button onClick={() => logOut()}>log out</button> */}
-       </div>
+//       <div className='header-profile'>
+//         <Link to={`/users/${loggedInUser.username}`}>
+//            {/* <p className='header-name'>{loggedInUser.name}</p> */}
+//            <img className='header-profile-pic' alt={loggedInUser.name} src={loggedInUser.avatar_url} />
+//            </Link>
+//            {/* <button onClick={() => logOut()}>log out</button> */}
+//        </div>
 
-       : 
+//        : 
 
-       null
-      } 
+//        null
+//       } 
        
-  </div>;
-};
+//   </div>;
+// };
 
-export default Header;
+// export default Header;

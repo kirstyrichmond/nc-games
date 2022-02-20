@@ -2,8 +2,6 @@ import React, { useEffect, useState } from 'react'
 import { getUsers } from '../utils/api'
 import '../styles/users.css'
 import { Link } from 'react-router-dom'
-import Header from '../components/Header'
-import Nav from '../components/Nav'
 
 const Users = () => {
   const [isLoading, setIsLoading] = useState(true)
@@ -20,10 +18,7 @@ const Users = () => {
   return isLoading ? (
     <h3>loading...</h3>
  ) : (
-  <><Header /><Nav /><>
         <div>
-
-
           <h2 className='users-title'>Users</h2>
           <ul className='user-list'>
             {users.map(user => {
@@ -39,7 +34,7 @@ const Users = () => {
             })}
           </ul>
         </div>
-      </></>
+      
   )
 }
 
