@@ -1,9 +1,16 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
+import { useLocation } from 'react-router-dom';
 import '../../styles/nav.css'
 
 const NavItem = (props) => {
     const [open, setOpen] = useState(false)
-    console.log(open, "<< open");
+
+    const location = useLocation();
+
+    useEffect(() =>{
+        setOpen(false);
+      }, [location])
+
 
     return (
         <li className='nav-item'>

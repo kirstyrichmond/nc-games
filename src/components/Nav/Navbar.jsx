@@ -53,7 +53,8 @@
 // export default Nav;
 
 import { Alert, Stack } from '@mui/material'
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
+import { useLocation } from 'react-router-dom'
 import '../../styles/nav.css'
 import { UserContext } from '../Contexts/User-Context'
 
@@ -79,6 +80,7 @@ const Navbar = (props) => {
         <ul className='navbar-list'>
             { props.children }
         </ul>
+
         </div>
   ) 
 }
