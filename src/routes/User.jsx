@@ -5,6 +5,7 @@ import { UserContext } from '../components/Contexts/User-Context'
 import '../styles/user.css'
 import Header from '../components/Header'
 import moment from 'moment'
+import { Box, CircularProgress } from '@mui/material'
 
 const User = () => {
     const [singleUser, setSingleUser] = useState({})
@@ -31,12 +32,14 @@ const User = () => {
     })
 
     return isLoading ? (
-        <h3>loading...</h3>
+        <Box sx={{ display: 'flex', justifyContent: 'center'}} >
+      <CircularProgress size={65} className="loading-spinner" />
+    </Box>
      ) : (
         <>
         <div>
-                <h3 className='user-profile-username'>{username}</h3>
                 <p className='user-profile-name'>{singleUser.name}</p>
+                <h3 className='user-profile-username'>{username}</h3>
                 <img className='user-profile-photo' src={singleUser.avatar_url} alt={username} />
                 <div>
                     <h3>

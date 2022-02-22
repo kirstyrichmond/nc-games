@@ -3,6 +3,8 @@ import { Link, useNavigate } from 'react-router-dom'
 import { getUserByUsername, getUsers } from '../utils/api'
 import { UserContext } from '../components/Contexts/User-Context'
 import Nav from '../components/Nav/Navbar'
+import LogInAlert from '../components/LoginRequired'
+import '../styles/userlogin.css'
 
 const UserLogin = () => {
     const [users, setUsers] = useState([])
@@ -50,21 +52,33 @@ const UserLogin = () => {
     
   return (
     <div>
+        <ul className='list-all-users'>
         {
                 users.map(user => {
                     return (
-                        <li className='user-list-user' key={user.username}>
-                            <h3 className='user-list-username'>{user.username}</h3>
-                            {/* <p className='user-list-name'>{user.name}</p> */}
+                        // <div className='list-all-users'>
+                        <li className='list-item' key={user.username}>
+                            <div className='user-list-user'>
+                            <div>
                             <img className='user-list-photo' src={user.avatar_url} alt={user.username} />
+                            {/* <h3 className='user-list-username'>{user.username}</h3> */}
+                            </div>
+                            <div className='user-list-name-photo'>
+                            <div className='user-list-name'>
+                            <h3>{user.name}</h3>
+                            </div>
+                            <div>
                             {
                                 (loggedInUser === null || loggedInUser.username !== user.username) ?
-                                <button onClick={() => login(user)}>Log in</button>
+                                <button className='user-button' onClick={() => login(user)}>Log in</button>
                             : 
-                                <button onClick={() => login(user)}>Continue...</button>
+                                <button className='user-button' onClick={() => login(user)}>Continue...</button>
                             }
-                            
+                            </div>
+                            </div>
+                            </div>
                         </li>
+                            // </div>
                     )
                 })
             }
@@ -79,7 +93,9 @@ const UserLogin = () => {
             onChange={(event) => setUsernameInput(event.target.value)} />
             <button type='submit'>Log in</button>
         </form> */}
+        </ul>
     </div>
+     
   )
 }
 

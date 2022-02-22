@@ -8,6 +8,7 @@ import PostComment from '../components/PostComment';
 import DeleteComment from '../components/CommentCard';
 import moment from 'moment';
 import ChatBubbleOutlineRoundedIcon from '@mui/icons-material/ChatBubbleOutlineRounded';
+import { Box, CircularProgress } from '@mui/material';
 // import Comments from './Comments';
 // import { BsHandThumbsDown, BsHandThumbsUp } from "react-icons/bs";
 
@@ -43,7 +44,9 @@ const ReviewPage = () => {
     }
     
     return isLoading ? (
-        <h3>loading...</h3>
+        <Box sx={{ display: 'flex', justifyContent: 'center'}} >
+      <CircularProgress size={65} className="loading-spinner" />
+    </Box>
      ) : (
         <><><div className='review-card'>
                 <div>
@@ -88,10 +91,12 @@ const ReviewPage = () => {
                         {comments.map(comment => {
                             return (
                                 <li key={comment.body} className='comment-card'>
-                                    <h4>{comment.body}</h4>
+                                    <div className='comment-name-date'>
                                     <p>{comment.author}</p>
                                     {/* <p>Votes: {comment.votes}</p> */}
                                     <p>posted {moment(comment.created_at).startOf('hour').fromNow()}</p>
+                                    </div>
+                                    <h4 className='comment-body'>{comment.body}</h4>
                                     <DeleteComment comment={comment} review_id={review_id} setComments={setComments} />
                                 </li>
                             );

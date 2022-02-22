@@ -1,6 +1,13 @@
+html {
+  margin-top: 80px;
+}
+
+
+
 .App {
   text-align: center;
 }
+
 
 .App-logo {
   height: 40vmin;
@@ -40,3 +47,10 @@
 a {
   color: inherit;
 }
+
+/* .loading-spinner {
+  width: 500px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+} */

@@ -1,3 +1,4 @@
+import { Box, CircularProgress } from '@mui/material';
 import React, { useContext, useEffect, useState } from 'react';
 // import { Link } from 'react-router-dom'
 import '../styles/home.css'
@@ -25,7 +26,9 @@ const Home = () => {
 
 
   return isLoading ? (
-       <h3>loading...</h3>
+    <Box sx={{ display: 'flex', justifyContent: 'center'}} >
+    <CircularProgress size={65} className="loading-spinner" />
+  </Box>
     ) : (
     <div>
       {/* <UserRegister /> */}

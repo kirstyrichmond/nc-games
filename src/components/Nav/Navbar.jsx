@@ -52,6 +52,7 @@
 
 // export default Nav;
 
+import { Alert, Stack } from '@mui/material'
 import React, { useContext, useState } from 'react'
 import '../../styles/nav.css'
 import { UserContext } from '../Contexts/User-Context'
@@ -61,20 +62,14 @@ const Navbar = (props) => {
     const [open, setOpen] = useState(false)
 
     const showSidebar = () => {
-              console.log("<< open / close sidebar");
               setOpen(!open)
           }
 
     const DropdownItem = (props) => {
         return (
-            <a href='#' className='menu-item'>
-                <span className='icon-button'>
-                    { props.leftIcon }
-                </span>
+            <div>
                 { props.children }
-                <span className='icon-right'>
-                    { props.rightIcon }</span> 
-            </a>
+            </div>
         )
     }
 
@@ -85,7 +80,7 @@ const Navbar = (props) => {
             { props.children }
         </ul>
         </div>
-  )
+  ) 
 }
 
 export default Navbar

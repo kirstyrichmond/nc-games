@@ -11,7 +11,7 @@ import { useContext, useEffect, useState } from "react";
 import { UserContext } from "./components/Contexts/User-Context";
 import Users from "./routes/Users";
 import User from "./routes/User";
-import MenuRoundedIcon from '@mui/icons-material/MenuRounded';
+import MenuRoundedIcon from "@mui/icons-material/MenuRounded";
 import DropdownMenu from "./components/Nav/DropdownMenu";
 
 function App() {
@@ -42,6 +42,10 @@ function App() {
     saveLoggedInUser();
   }, [loggedInUser, loggedIn]);
 
+  useEffect(() => {
+    window.scrollTo(50, 50)
+  }, [])
+
   const isLoggedIn = loggedInUser !== null;
 
   return (
@@ -51,9 +55,9 @@ function App() {
       >
         <div className="App">
           <Navbar>
-            <NavItem icon={<MenuRoundedIcon/>}>
+            <NavItem icon={<MenuRoundedIcon />}>
               <DropdownMenu />
-            </NavItem> 
+            </NavItem>
           </Navbar>
           <Routes>
             <Route path="/" element={<Home />} />

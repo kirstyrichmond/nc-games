@@ -6,12 +6,20 @@
   /* margin: 10px 0px; */
   padding: 20px 5px;
   border-radius: 8px;
-  max-width: 550px;
+  max-width: 500px;
   min-height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   /* display: grid;
   grid-gap: 1rem; */
   /* background-image: url("https://www.giantfreakinrobot.com/wp-content/uploads/2019/11/gloom-900x675.jpg");
   background-size: cover; */
+}
+
+.categories-container {
+  display: block;
+  justify-content: center;
 }
 
 .categories-list {
@@ -19,10 +27,12 @@
   padding: 0px 20px;
   display: grid;
   grid-gap: 1rem;
+  max-width: 1000px;
+  margin: auto;
 }
 
 .all-categories {
-  background: linear-gradient(0deg, rgba(1, 1, 1, 0.3), rgba(0, 0, 0, 0.589)),
+  background: linear-gradient(0deg, rgba(1, 1, 1, 0.3), rgba(31, 20, 20, 0.589)),
     url(https://media.timeout.com/images/105627949/750/422/image.jpg);
   background-size: cover;
   /* background-repeat: no-repeat; */
@@ -95,5 +105,3 @@
     grid-template-columns: repeat(2, 1fr);
   }
 }
-
-

@@ -8,7 +8,7 @@ import PostReview from '../components/PostReview';
 import moment from 'moment';
 import Fab from '@mui/material/Fab';
 import AddIcon from '@mui/icons-material/Add';
-import { Box, Button, Icon, Modal, Typography } from '@mui/material';
+import { Box, Button, CircularProgress, Icon, Modal, Typography } from '@mui/material';
 import ChatBubbleOutlineRoundedIcon from '@mui/icons-material/ChatBubbleOutlineRounded';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 // import PostReviewModal from '../components/PostReviewModal';
@@ -56,7 +56,7 @@ const ReviewList = () => {
     
 
     return isLoading ? (
-        <h3>loading...</h3>
+      <CircularProgress size={65} className="loading-spinner" />
      ) : (
         <><div 
         className='review-list-main'>
@@ -77,11 +77,9 @@ const ReviewList = () => {
                         </Fab>
                     </button> */}
 
-                    <Button onClick={() => { handleOpen(true)}}>
-                    <Fab color="primary" aria-label="add">
+                    <Fab onClick={() => { handleOpen(true)}} color="primary" aria-label="add">
                             <AddIcon />
                         </Fab>
-                    </Button>
                     <Modal
                     open={open}
                     onClose={handleClose}
