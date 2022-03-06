@@ -1,26 +1,22 @@
-import React, { useEffect, useState } from 'react'
-import { useLocation } from 'react-router-dom';
-import '../../styles/nav.css'
+import React, { useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
+import "../../styles/nav.css";
 
 const NavItem = (props) => {
-    const [open, setOpen] = useState(false)
+  const [open, setOpen] = useState(false);
 
-    const location = useLocation();
+  const location = useLocation();
 
-    useEffect(() =>{
-        setOpen(false);
-      }, [location])
+  useEffect(() => {
+    setOpen(false);
+  }, [location]);
 
+  return (
+    <li className="nav-item">
+      <div onClick={() => setOpen(!open)}>{props.icon}</div>
+      {open && props.children}
+    </li>
+  );
+};
 
-    return (
-        <li className='nav-item'>
-            <div onClick={() => setOpen(!open)}>
-                { props.icon }
-            </div>
-            { open && props.children }
-        </li>
-
-    )
-}
-
-export default NavItem
+export default NavItem;

@@ -113,16 +113,18 @@ export const deleteComment = (comment_id) => {
 };
 
 export const deleteReview = (review_id) => {
-  return gamesApi
-    // .delete(`/comments/${comment_id}`).then(() => {
+  return (
+    gamesApi
+      // .delete(`/comments/${comment_id}`).then(() => {
 
-    // })
-    .delete(`/reviews/${review_id}`)
-    .then(({ data }) => {
-      return data.review;
-    })
-    .catch((err) => {
-      console.log(err);
-      throw err;
-    });
+      // })
+      .delete(`/reviews/${review_id}`)
+      .then(({ data }) => {
+        return data.review;
+      })
+      .catch((err) => {
+        console.log(err);
+        throw err;
+      })
+  );
 };
