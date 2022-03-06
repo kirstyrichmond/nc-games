@@ -18,23 +18,38 @@ const ReviewPage = () => {
     const { loggedInUser } = useContext(UserContext)
     const [isLoading, setIsLoading] = useState(true)
     const [comments, setComments] = useState([])
+    const [error, setError] = useState(false)
     const navigate = useNavigate()
+
     
-    useEffect(() => {
-        getComments(review_id).then(commentsResponse => {
-            // setComments(comments)
-            const displayComments = [commentsResponse, comments]
-            return displayComments
-        })
-    }, [review_id, comments])
+    
+    // useEffect(() => {
+    //     // getComments(review_id).then(commentsResponse => {
+    //     //     // setComments(comments)
+    //     //     const displayComments = [commentsResponse, comments]
+    //     //     return displayComments
+    //     // })
+    // }, [review_id, comments])
 
     useEffect(() => {
         getReviewById(review_id).then(review => {
             setSingleReview(review)
+            console.log(review.comment_count, "<< review");
+            // if(review.comment_count > 0) {
+            //     getComments(review_id).then(commentsResponse => {
+            //         console.log("<< are comments");
+            //         // setComments(comments)
+            //         const displayComments = [commentsResponse, comments]
+            //         return displayComments
+            //     })
+            // }
             setIsLoading(false)
             
         })
-    }, [review_id])
+        .catch(() => {
+            setError(true)
+        })
+    }, [comments])
   
   const handleDelete = () => {
       deleteReview(singleReview.review_id).then(() => {
@@ -42,7 +57,16 @@ const ReviewPage = () => {
       })
       
     }
-    
+
+    if (error) {
+        return (
+            <div>
+                <p className='message'>That review does not exist.</p>
+                <p className='redirect-message'>Click  <a className="redirect" href="/reviews">  here  </a> to head back to the reviews.</p>
+            </div>
+        )
+    } else {
+
     return isLoading ? (
         <Box sx={{ display: 'flex', justifyContent: 'center'}} >
       <CircularProgress size={65} className="loading-spinner" />
@@ -85,7 +109,7 @@ const ReviewPage = () => {
                         Comments({singleReview.comment_count})
                     </h3>
                     <div>
-                        <PostComment review_id={review_id} comments={comments} setComments={setComments} loggedInUser={loggedInUser} />
+                        <PostComment singleReview={singleReview} review_id={review_id} comments={comments} setComments={setComments} loggedInUser={loggedInUser} />
                     </div>
                     <div>
                         {comments.map(comment => {
@@ -99,11 +123,13 @@ const ReviewPage = () => {
                                     <h4 className='comment-body'>{comment.body}</h4>
                                     <DeleteComment comment={comment} review_id={review_id} setComments={setComments} />
                                 </li>
+                
                             );
                         })}
                     </div>
                 </div></></>
-  )
-};
+            )
+      }
+}
 
 export default ReviewPage;

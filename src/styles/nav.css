@@ -1,52 +1,4 @@
-/* .nav {
-  padding: 5px;
-  background-color: rgb(215, 237, 255);
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-}
-
-.logo {
-  font-size: 2rem;
-  padding: 0px 5px;
-  text-decoration: none;
-}
-
-.nav-link {
-  color: black;
-  padding: 0px 5px;
-  text-decoration: none;
-  display: flex;
-  justify-content: space-around;
-}
-
-.nav-profile-pic {
-  width: 5vw;
-}
-
-.hamburger {
-  background-color: transparent;
-  color: black;
-  border: 0;
-  font-size: 50px;
-  cursor: pointer;
-  display: none;
-}
-
-.hamburger:focus {
-  outline: none;
-}
-
-@media only screen and (max-width: 767px) {
-  /* .nav-link {
-    display: none;
-  }
-  .hamburger {
-    display: block;
-  } */
-/* }  */
-
- * {
+* {
   margin: 0px;
 }
 
@@ -57,18 +9,15 @@
   --border: 1px solid #474a4d;
   --border-radius: 8px;
   --speed: 500ms;
-  /* margin-top: 75px; */
 }
 
 ul {
   list-style: none;
   margin: 0;
   padding: 0;
-} 
-
+}
 
 a {
-  /* color: #dadce1; */
   text-decoration: none;
 }
 
@@ -106,6 +55,7 @@ a {
   justify-content: center;
   margin-right: 25px;
   color: #dadce1;
+  cursor: pointer;
 }
 
 .icon-button {
@@ -149,9 +99,9 @@ a {
   padding: 0.5rem;
 }
 
- .menu-item:hover {
+.menu-item:hover {
   background-color: #525357;
-} 
+}
 
 .nav-profile-pic {
   max-width: 75px;
@@ -160,5 +110,3 @@ a {
   overflow: hidden;
   border-radius: 50%;
 }
-
-

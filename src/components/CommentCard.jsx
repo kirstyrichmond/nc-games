@@ -7,7 +7,6 @@ import { UserContext } from './Contexts/User-Context';
 
 const CommentCard = ({ comment, review_id, setComments }) => {
   const { loggedInUser } = useContext(UserContext)
-  const isDisabled = loggedInUser?.username === comment.owner
   
   const handleDelete = (event) => {
       deleteComment(comment.comment_id).then(() => {

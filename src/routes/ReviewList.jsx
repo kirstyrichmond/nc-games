@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from 'react';
-import { getAllReviews } from '../utils/api';
+import React, { useContext, useEffect, useState } from 'react';
+import { getAllReviews, getCategories, postReview } from '../utils/api';
 import '../styles/review-list.css'
 // import ReviewPage from './ReviewCard';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import SortAndOrderBy from '../components/SortAndOrderBy';
 import PostReview from '../components/PostReview';
 import moment from 'moment';
@@ -11,6 +11,7 @@ import AddIcon from '@mui/icons-material/Add';
 import { Box, Button, CircularProgress, Icon, Modal, Typography } from '@mui/material';
 import ChatBubbleOutlineRoundedIcon from '@mui/icons-material/ChatBubbleOutlineRounded';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { UserContext } from '../components/Contexts/User-Context';
 // import PostReviewModal from '../components/PostReviewModal';
 <FontAwesomeIcon icon="fa-solid fa-circle-plus" />
 
@@ -30,9 +31,125 @@ const ReviewList = () => {
     const [reviews, setReviews] = useState([])
     // const [openModal, setOpenModal] = useState(false)
     const [isLoading, setIsLoading] = useState(true)
-    const [open, setOpen] = React.useState(false);
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
+
+    const PostReview = ({ handleClose, reviews }) => {
+        const { loggedInUser } = useContext(UserContext)
+        // const [addReview, setAddReview] = useState("")
+        const [newReviewTitle, setNewReviewTitle] = useState("")
+      const [newReviewPhoto, setNewReviewPhoto] = useState("")
+      const [newReviewBody, setNewReviewBody] = useState("")
+      const [newReviewDesigner, setNewReviewDesigner] = useState("")
+      const [newReviewCategory, setNewReviewCategory] = useState("")
+    
+          const handleTitleChange = (event) => {
+            setNewReviewTitle(event.target.value)
+          }
+    
+          const handlePhotoChange = (event) => {
+            setNewReviewPhoto(event.target.value)
+          }
+    
+          const handleBodyChange = (event) => {
+              setNewReviewBody(event.target.value)
+            }
+    
+            const handleDesignerChange = (event) => {
+                setNewReviewDesigner(event.target.value)
+            }
+            
+            const handleCategoryChange = (event) => {
+              setNewReviewCategory(event.target.value)
+            }
+    
+       const handleSubmit = (event) => {
+           event.preventDefault()
+    
+           const newReview = {
+                title: newReviewTitle,
+                owner: loggedInUser.username,
+                review_img_url: newReviewPhoto,
+                review_body: newReviewBody,
+                designer: newReviewDesigner,
+                category: newReviewCategory
+           }
+    
+           postReview(newReview).then((review) => {
+              const updatedList = [...review, ...reviews]
+                setReviews(updatedList)
+        })
+           .catch((err) => {
+               console.log(err);
+           })
+       }
+    
+      return (
+          <><div>
+          </div><div>
+                  <h3>Add review:</h3>
+                  <form onSubmit={handleSubmit}>
+                      {/* <label>Title:</label> */}
+                      <input required
+                          type='text'
+                          value={newReviewTitle}
+                          id='reviewTitle'
+                          name='reviewTitle'
+                          placeholder='title'
+                          onChange={handleTitleChange} />
+                      <br />
+                      {/* <label>Photo URL:</label> */}
+                      <input
+                          type='url'
+                          value={newReviewPhoto}
+                          id='reviewPhoto'
+                          name='reviewPhoto'
+                          placeholder='photo URL'
+                          onChange={handlePhotoChange} />
+                      <br />
+                        {/* <label>Description:</label> */}
+                        <input
+                            type='text'
+                            value={newReviewBody}
+                            id='reviewBody'
+                            name='reviewBody'
+                            placeholder='description'
+                            onChange={handleBodyChange} />
+                      <br />
+                      {/* <label>Designer:</label> */}
+                        <input
+                            type='text'
+                            value={newReviewDesigner}
+                            id='reviewDesigner'
+                            name='reviewDesigner'
+                            placeholder='designer'
+                            onChange={handleDesignerChange} />
+                      <br />
+                      <select value={newReviewCategory} name="reviewCategory" id="reviewCategory" onChange={handleCategoryChange}>
+                          <option value="" disabled defaultValue>Select Category</option>
+                          <option key='strategy' value='strategy'>strategy</option>
+                          <option key='hidden-roles' value='hidden-roles'>hidden-roles</option>
+                          <option key='dexterity' value='dexterity'>dexterity</option>
+                          <option key='push-your-luck' value='push-your-luck'>push-your-luck</option>
+                          <option key='roll-and-write' value='roll-and-write'>roll-and-write</option>
+                          <option key='deck-building' value='deck-building'>deck-building</option>
+                          <option key='engine-building' value='engine-building'>engine-building</option>
+    
+                          {/* {
+                            categories.map((categoryOption) => {
+                              return (
+                                  <option>
+                                      {categoryOption.category}
+                                  </option>
+                              )
+                          })
+                          } */}
+                      </select>
+                      <br />
+                      <button type='submit' value='submit' className="submit-btn">Submit</button>
+                  </form>
+              </div></>
+      )
+    }
+    
 
     const { category } = useParams()
 
@@ -43,17 +160,16 @@ const ReviewList = () => {
         })
     }, [category])
 
-    useEffect(() => {
-        getAllReviews().then((data) => {
-          setReviews(data);
-        });
-      }, []);
+    // useEffect(() => {
+    //     getAllReviews().then((data) => {
+    //       setReviews(data);
+    //     })
+        
+    //   }, []);
 
     const updateReviews = (reviews) => {
         setReviews(reviews)
-    }
-    console.log(reviews, "<< all the reviews");
-    
+    }    
 
     return isLoading ? (
       <CircularProgress size={65} className="loading-spinner" />
@@ -63,45 +179,12 @@ const ReviewList = () => {
                 <h2 className='all-reviews-header'>{category ? category : "all reviews"}</h2>
                 <div className='sort-by'>
                     <SortAndOrderBy updateReviews={updateReviews} category={category} />
+                        <PostReview reviews={reviews} />
                 </div>
+                
                 <div className='post-review'>
-                    {/* <Link to ="/add-review">
-        <button type="submit">Add review</button>
-      </Link> */}
-      {/* <FontAwesomeIcon icon="fa-regular fa-circle-plus" /> */}
-                    <br />
-                    
-                    {/* <button className='open-modal-button' onClick={() => { setOpenModal(true); } }>
-                        <Fab color="primary" aria-label="add">
-                            <AddIcon />
-                        </Fab>
-                    </button> */}
 
-                    <Fab onClick={() => { handleOpen(true)}} color="primary" aria-label="add">
-                            <AddIcon />
-                        </Fab>
-                    <Modal
-                    open={open}
-                    onClose={handleClose}
-                    aria-labelledby="modal-modal-title"
-                    aria-describedby="modal-modal-description"
-                    >
-                    <Box sx={style}>
-                        <div className='title-close-btn'>
-                            <button onClick={() => handleClose()}>X</button>
-                        </div>
-                        {/* <Typography id="modal-modal-title" variant="h6" component="h2">
-                        Add a review:
-                        </Typography> */}
-                        <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-                        <PostReview handleClose={handleClose} />
-                        </Typography>
-                    </Box>
-
-                    </Modal>
-                    {/* {open && <PostReview closeModal={setOpen} />} */}
-
-                </div>
+                </div> 
                 <ul className='reviews-list'>
                     {reviews.map(review => {
                         return (
@@ -135,8 +218,9 @@ const ReviewList = () => {
                         );
                     })}
                 </ul>
-            </div></>
-  )
+            </div>
+            </>
+        )
 };
 
 export default ReviewList;

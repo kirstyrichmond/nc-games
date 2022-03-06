@@ -10,40 +10,16 @@ const ReviewVote = ({ votes, owner, review_id }) => {
     const isDisabled = loggedInUser?.username === owner
     const [upVote, setUpVote] = useState(false)
     const [downVote, setDownVote] = useState(false)
-    
-    // const saveUpVote = () => {
-    //     localStorage.setItem("votes", JSON.stringify(upVote))
-    // }
-
-    // const getSavedUpVote = () => {
-    //     if (localStorage.getItem("votes") === null) {
-    //         localStorage.setItem("votes", JSON.stringify(null));
-    //     } else {
-    //         let votesLocal = JSON.parse(localStorage.getItem("votes"));
-    //         setUpVote(votesLocal);
-    //         // setLoggedIn(true);
-    //     }
-    // }
-
-    // useEffect(() => {
-    //     getSavedUpVote()
-    // }, [])
-
-    // useEffect(() => {
-    //     saveUpVote()
-    // }, [upVote])
 
     const upVoteFunc = () => {
         if (!upVote) {
             patchReviewVote(review_id, 1).then(() => {
-                console.log(voteChange, "<< vote change up");
                 setVoteChange((currChange) => currChange + 1)
                 setUpVote(true)
                 setDownVote(false)
             })
         }
         else {
-            console.log(voteChange, "<< vote change down");
             setVoteChange((currChange) => currChange - 1)
             patchReviewVote(review_id, -1)
             setUpVote(false)
@@ -54,14 +30,12 @@ const ReviewVote = ({ votes, owner, review_id }) => {
     const downVoteFunc = () => {
         if (!downVote) {
             patchReviewVote(review_id, -1).then(() => {
-                console.log(voteChange, "<< vote change down");
                 setVoteChange((currChange) => currChange - 1)
                 setDownVote(true)
                 setUpVote(false)
             })
 
         } else {
-            console.log(voteChange, "<< vote change up");
             setVoteChange((currChange) => currChange + 1)
             patchReviewVote(review_id, 1)
             setDownVote(false)
@@ -71,7 +45,6 @@ const ReviewVote = ({ votes, owner, review_id }) => {
 
   return (
       <div className='vote-container'>
-        {/* <BsHandThumbsUp /> */}
         <div className='thumbs-up-btn'>
         <button className='vote-button' disabled={isDisabled} onClick={() => upVoteFunc()} >
             {

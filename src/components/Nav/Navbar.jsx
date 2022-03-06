@@ -77,9 +77,15 @@ const Navbar = (props) => {
   return (
       <div className='navbar'>
         <h2 className='logo'>NC Games</h2>
-        <ul className='navbar-list'>
-            { props.children }
-        </ul>
+        {
+          loggedInUser ? (
+        loggedInUser.username &&
+          <ul className='navbar-list'>
+          { props.children }
+      </ul> ) : (
+            <p>.</p>
+      )
+}
 
         </div>
   ) 

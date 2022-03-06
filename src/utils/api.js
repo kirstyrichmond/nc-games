@@ -22,21 +22,34 @@ export const getAllReviews = (category, sort_by, order) => {
       },
     })
     .then(({ data }) => {
-      console.log(data.reviews);
       return data.reviews;
+    })
+    .catch((err) => {
+      console.log(err);
     });
 };
 
 export const getComments = (review_id) => {
-  return gamesApi.get(`/reviews/${review_id}/comments`).then(({ data }) => {
-    return data.comments;
-  });
+  return gamesApi
+    .get(`/reviews/${review_id}/comments`)
+    .then(({ data }) => {
+      return data.comments;
+    })
+    .catch((err) => {
+      throw err;
+    });
 };
 
 export const getReviewById = (review_id) => {
-  return gamesApi.get(`/reviews/${review_id}`).then(({ data }) => {
-    return data.review;
-  });
+  return gamesApi
+    .get(`/reviews/${review_id}`)
+    .then(({ data }) => {
+      return data.review;
+    })
+    .catch((err) => {
+      console.log(err);
+      throw err;
+    });
 };
 
 export const getUsers = () => {
@@ -75,21 +88,18 @@ export const postComment = (review_id, commentData) => {
   return gamesApi
     .post(`/reviews/${review_id}/comments`, commentData)
     .then(({ data }) => {
-      console.log(data.comment, "<< new comment in api");
       return data.comment;
     });
 };
 
 export const postReview = (newReview) => {
   return gamesApi.post(`/reviews`, newReview).then(({ data }) => {
-    console.log(data.review, "<< new review in api");
     return data.review;
   });
 };
 
 export const postUser = (newUser) => {
   return gamesApi.post(`/users`, newUser).then(({ data }) => {
-    console.log(data.user, "<< new user in the api");
     return data.user;
   });
 };
@@ -104,12 +114,15 @@ export const deleteComment = (comment_id) => {
 
 export const deleteReview = (review_id) => {
   return gamesApi
+    // .delete(`/comments/${comment_id}`).then(() => {
+
+    // })
     .delete(`/reviews/${review_id}`)
     .then(({ data }) => {
-      console.log(data.review, "<< deleted review");
       return data.review;
     })
     .catch((err) => {
       console.log(err);
+      throw err;
     });
 };
