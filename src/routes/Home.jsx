@@ -53,7 +53,7 @@ const Home = () => {
                     <h3>{user.name}</h3>
                   </div>
                   <div>
-                    {loggedInUser === null ||
+                    {/* {loggedInUser === null ||
                     loggedInUser.username !== user.username ? (
                       <button
                         className="user-button"
@@ -61,14 +61,11 @@ const Home = () => {
                       >
                         Log in
                       </button>
-                    ) : (
-                      <button
-                        className="user-button"
-                        onClick={() => login(user)}
-                      >
-                        Continue...
-                      </button>
-                    )}
+                    ) : ( */}
+                    <button className="user-button" onClick={() => login(user)}>
+                      Continue...
+                    </button>
+                    {/* )} */}
                   </div>
                 </div>
               </div>
