@@ -5,7 +5,6 @@ import { Link, useParams } from "react-router-dom";
 import CircularProgress from "@mui/material/CircularProgress";
 import Box from "@mui/material/Box";
 import { UserContext } from "../components/Contexts/User-Context";
-import LogInAlert from "../components/LoginRequired";
 import "../styles/userlogin.css";
 
 const Categories = () => {

@@ -16,11 +16,12 @@ const Home = () => {
     });
   }, []);
 
-  return isLoading ? (
-    <Box sx={{ display: "flex", justifyContent: "center" }}>
-      <CircularProgress size={65} className="loading-spinner" />
-    </Box>
-  ) : (
+  return (
+  // isLoading ? (
+  //   <Box sx={{ display: "flex", justifyContent: "center" }}>
+  //     <CircularProgress size={65} className="loading-spinner" />
+  //   </Box>
+  // ) : (
     <div>
       <UserLogin />
     </div>

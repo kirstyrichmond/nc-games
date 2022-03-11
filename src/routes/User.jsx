@@ -3,7 +3,6 @@ import { Link, useParams } from "react-router-dom";
 import { getAllReviews, getUserByUsername } from "../utils/api";
 import { UserContext } from "../components/Contexts/User-Context";
 import "../styles/user.css";
-import Header from "../components/Header";
 import moment from "moment";
 import { Box, CircularProgress } from "@mui/material";
 

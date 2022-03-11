@@ -4,7 +4,6 @@ import "../styles/review-list.css";
 // import ReviewPage from './ReviewCard';
 import { Link, useNavigate, useParams } from "react-router-dom";
 import SortAndOrderBy from "../components/SortAndOrderBy";
-import PostReview from "../components/PostReview";
 import moment from "moment";
 import Fab from "@mui/material/Fab";
 import AddIcon from "@mui/icons-material/Add";
