@@ -8,7 +8,7 @@ Hosted: https://nc-games-kirsty-richmond.netlify.app
 
 This is a front-end React application that connects to the API I built:
 
-API: http://be-nc-games-app.herokuapp.com/api
+API: https://be-nc-games-app.herokuapp.com/api
 
 Back-end: https://github.com/kirstyrichmond/be-nc-games
 
