@@ -60,10 +60,10 @@ function App() {
           </Navbar>
           <Routes>
             <Route exact path="/" element={<Home />} />
-            {!isLoggedIn || Object.keys(loggedInUser).length === 0 ? (
+            {/* {!isLoggedIn || Object.keys(loggedInUser).length === 0 ? (
               <Route path="*" element={<Error />} />
             ) : (
-              <>
+              <> */}
                 <Route exact path="/categories" element={<Categories />} />
                 <Route
                   exact
@@ -79,8 +79,8 @@ function App() {
                 <Route exact path="/users" element={<Users />} />
                 <Route exact path="/users/:username" element={<User />} />
                 <Route path="*" element={<NotFoundError />} />
-              </>
-            )}
+              {/* </> */}
+            {/* )} */}
           </Routes>
         </div>
       </UserContext.Provider>
