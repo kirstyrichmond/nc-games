@@ -1,18 +1,38 @@
-# nc-games-app
+# NC Games: Front-End :jigsaw:
 
-Created by Kirsty Richmond
+Created by Kirsty Richmond.
 
-Hosted: https://nc-games-kirsty-richmond.netlify.app
+[Visit NC Games](https://nc-games-kirsty-richmond.netlify.app)
+<br/>
+
+[Back-end: Code](https://github.com/kirstyrichmond/be-nc-games)
+<br/>
+[NC Games: API ⬇](https://be-nc-games-app.herokuapp.com/api)
+<br/>
+** **Download JSON viewer plugin to make the JSON text readable** **
 
 ## Description
 
-This is a front-end React application that connects to the API I built:
+NC Games is a board game review-based web application that allows a user to login and interact with categories, reviews, users and comments.
 
-API: https://be-nc-games-app.herokuapp.com/api
+As a user, you can: 
 
-Back-end: https://github.com/kirstyrichmond/be-nc-games
+- log in
+- view categories / reviews / comments / users
+- add review
+- like review
+- comment on review
+- delete own review
+- delete own comment
+- log out
 
-nc-games is a board games review app that allows a user to login and interact with categories, reviews, users and comments. The user can like reviews and comments. The user can also post and delete reviews and/or comments they have posted.
+#### Created with:
+
+![image](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
+
+#### Hosted with:
+
+![image](https://img.shields.io/badge/Netlify-00C7B7?style=for-the-badge&logo=netlify&logoColor=white)
 
 ## Set up
 
