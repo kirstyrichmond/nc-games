@@ -2,7 +2,7 @@
 
 Created by Kirsty Richmond.
 
-[Visit NC Games](https://nc-games-kirsty-richmond.netlify.app)
+[Visit NC Games](https://nc-games-kirsty-richmond.netlify.app) 
 <br/>
 
 [Back-end: Code](https://github.com/kirstyrichmond/be-nc-games)
