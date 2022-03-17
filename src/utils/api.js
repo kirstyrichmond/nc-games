@@ -113,19 +113,14 @@ export const deleteComment = (comment_id) => {
 };
 
 export const deleteReview = (review_id) => {
-  return (
-    gamesApi
-      // .delete(`/comments/${comment_id}`).then(() => {
-
-      // })
-      .delete(`/reviews/${review_id}`)
-      .then(({ data }) => {
-        console.log({ review_id }, "has been deleted");
-        return data.review;
-      })
-      .catch((err) => {
-        console.log(err, "< error");
-        throw err;
-      })
-  );
+  return gamesApi
+    .delete(`/reviews/${review_id}`)
+    .then(({ data }) => {
+      console.log({ review_id }, "has been deleted");
+      return data.review;
+    })
+    .catch((err) => {
+      console.log(err, "< error");
+      throw err;
+    });
 };

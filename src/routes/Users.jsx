@@ -1,14 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { getUsers } from "../utils/api";
-import "../styles/userlogin.css";
 import { Link, useNavigate } from "react-router-dom";
 import CircularProgress from "@mui/material/CircularProgress";
-import Box from "@mui/material/Box";
 
 const Users = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [users, setUsers] = useState([]);
-  const [pageSize, setPageSize] = React.useState(5);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -28,7 +25,6 @@ const Users = () => {
           return (
             <Link to={`/users/${user.username}`} key={user.username}>
               <li className="user-list-user">
-                {/* <p className='user-list-name'>{user.name}</p> */}
                 <img
                   className="user-list-photo"
                   src={user.avatar_url}

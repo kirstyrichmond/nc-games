@@ -1,7 +1,6 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { getAllReviews, getUserByUsername } from "../utils/api";
-import { UserContext } from "../components/Contexts/User-Context";
 import "../styles/user.css";
 import moment from "moment";
 import { Box, CircularProgress } from "@mui/material";
@@ -9,7 +8,6 @@ import { Box, CircularProgress } from "@mui/material";
 const User = () => {
   const [singleUser, setSingleUser] = useState({});
   const { username } = useParams();
-  const { loggedInUser } = useContext(UserContext);
   const [userReviews, setUserReviews] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 

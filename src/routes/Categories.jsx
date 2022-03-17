@@ -3,15 +3,12 @@ import { getCategories } from "../utils/api";
 import "../styles/categories.css";
 import { Link, useParams } from "react-router-dom";
 import CircularProgress from "@mui/material/CircularProgress";
-import Box from "@mui/material/Box";
-import { UserContext } from "../components/Contexts/User-Context";
 import "../styles/userlogin.css";
 
 const Categories = () => {
   const [categories, setCategories] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const { slug } = useParams();
-  const { loggedInUser } = useContext(UserContext);
 
   useEffect(() => {
     getCategories().then((categoriesFromApi) => {

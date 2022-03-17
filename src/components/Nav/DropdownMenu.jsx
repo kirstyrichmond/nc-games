@@ -4,7 +4,6 @@ import { UserContext } from "../Contexts/User-Context";
 
 const DropdownMenu = () => {
   const { loggedInUser, setLoggedInUser } = useContext(UserContext);
-  const [open, setOpen] = useState(false);
 
   const logOut = () => {
     setLoggedInUser({ user: undefined });

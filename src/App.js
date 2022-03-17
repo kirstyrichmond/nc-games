@@ -12,7 +12,6 @@ import Users from "./routes/Users";
 import User from "./routes/User";
 import MenuRoundedIcon from "@mui/icons-material/MenuRounded";
 import DropdownMenu from "./components/Nav/DropdownMenu";
-import Error from "./routes/Errors/AccessError";
 import NotFoundError from "./routes/Errors/NotFoundError";
 
 function App() {
@@ -60,27 +59,13 @@ function App() {
           </Navbar>
           <Routes>
             <Route exact path="/" element={<Home />} />
-            {/* {!isLoggedIn || Object.keys(loggedInUser).length === 0 ? (
-              <Route path="*" element={<Error />} />
-            ) : (
-              <> */}
-                <Route exact path="/categories" element={<Categories />} />
-                <Route
-                  exact
-                  path="/reviews/:category"
-                  element={<ReviewList />}
-                />
-                <Route exact path="/reviews" element={<ReviewList />} />
-                <Route
-                  exact
-                  path="/review/:review_id"
-                  element={<ReviewPage />}
-                />
-                <Route exact path="/users" element={<Users />} />
-                <Route exact path="/users/:username" element={<User />} />
-                <Route path="*" element={<NotFoundError />} />
-              {/* </> */}
-            {/* )} */}
+            <Route exact path="/categories" element={<Categories />} />
+            <Route exact path="/reviews/:category" element={<ReviewList />} />
+            <Route exact path="/reviews" element={<ReviewList />} />
+            <Route exact path="/review/:review_id" element={<ReviewPage />} />
+            <Route exact path="/users" element={<Users />} />
+            <Route exact path="/users/:username" element={<User />} />
+            <Route path="*" element={<NotFoundError />} />
           </Routes>
         </div>
       </UserContext.Provider>

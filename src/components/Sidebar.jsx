@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import "../styles/nav.scss";
 
-const Sidebar = ({ links, close }) => {
+const Sidebar = ({ close }) => {
   return (
     <div className="sidebar" onClick={close}>
       <Link className="sidebar-link" to={`/categories`}>

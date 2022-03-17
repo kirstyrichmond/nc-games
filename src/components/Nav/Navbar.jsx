@@ -6,15 +6,6 @@ import { UserContext } from "../Contexts/User-Context";
 
 const Navbar = (props) => {
   const { loggedInUser } = useContext(UserContext);
-  const [open, setOpen] = useState(false);
-
-  const showSidebar = () => {
-    setOpen(!open);
-  };
-
-  const DropdownItem = (props) => {
-    return <div>{props.children}</div>;
-  };
 
   return (
     <div className="navbar">

@@ -1,12 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
-import {
-  deleteReview,
-  getAllReviews,
-  getComments,
-  getReviewById,
-  postComment,
-} from "../utils/api";
+import { deleteReview, getReviewById } from "../utils/api";
 import "../styles/review-card.css";
 import Vote from "../components/ReviewVote";
 import { UserContext } from "../components/Contexts/User-Context";
@@ -25,27 +19,10 @@ const ReviewPage = () => {
   const [error, setError] = useState(false);
   const navigate = useNavigate();
 
-  // useEffect(() => {
-  //     // getComments(review_id).then(commentsResponse => {
-  //     //     // setComments(comments)
-  //     //     const displayComments = [commentsResponse, comments]
-  //     //     return displayComments
-  //     // })
-  // }, [review_id, comments])
-
   useEffect(() => {
     getReviewById(review_id)
       .then((review) => {
         setSingleReview(review);
-        console.log(review.comment_count, "<< review");
-        // if(review.comment_count > 0) {
-        //     getComments(review_id).then(commentsResponse => {
-        //         console.log("<< are comments");
-        //         // setComments(comments)
-        //         const displayComments = [commentsResponse, comments]
-        //         return displayComments
-        //     })
-        // }
         setIsLoading(false);
       })
       .catch(() => {
@@ -109,7 +86,6 @@ const ReviewPage = () => {
               <p className="review-card-category">{singleReview.category}</p>
             </Link>
             <p className="review-card-designer">{singleReview.designer}</p>
-            {/* <p className='review-list-created-at'>{moment(singleReview.created_at).startOf('hour').fromNow()}</p> */}
             <div className="vote-comment-count">
               <Vote
                 votes={singleReview.votes}
@@ -123,7 +99,9 @@ const ReviewPage = () => {
             </div>
           </div>
           <div className="comments-container">
-            <h3 className="comments-title">Comments({singleReview.comment_count})</h3>
+            <h3 className="comments-title">
+              Comments({singleReview.comment_count})
+            </h3>
             <div>
               <PostComment
                 singleReview={singleReview}
@@ -139,7 +117,6 @@ const ReviewPage = () => {
                   <li key={comment.body} className="comment-card">
                     <div className="comment-name-date">
                       <p>{comment.author}</p>
-                      {/* <p>Votes: {comment.votes}</p> */}
                       <p>
                         posted{" "}
                         {moment(comment.created_at).startOf("hour").fromNow()}

@@ -1,46 +1,21 @@
 import React, { useContext, useEffect, useState } from "react";
-import { getAllReviews, getCategories, postReview } from "../utils/api";
+import { getAllReviews, postReview } from "../utils/api";
 import "../styles/review-list.css";
-// import ReviewPage from './ReviewCard';
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import SortAndOrderBy from "../components/SortAndOrderBy";
 import moment from "moment";
-import Fab from "@mui/material/Fab";
-import AddIcon from "@mui/icons-material/Add";
-import {
-  Box,
-  Button,
-  CircularProgress,
-  Icon,
-  Modal,
-  Typography,
-} from "@mui/material";
+import { CircularProgress } from "@mui/material";
 import ChatBubbleOutlineRoundedIcon from "@mui/icons-material/ChatBubbleOutlineRounded";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { UserContext } from "../components/Contexts/User-Context";
-// import PostReviewModal from '../components/PostReviewModal';
 <FontAwesomeIcon icon="fa-solid fa-circle-plus" />;
-
-const style = {
-  position: "absolute",
-  top: "50%",
-  left: "50%",
-  transform: "translate(-50%, -50%)",
-  width: 400,
-  bgcolor: "background.paper",
-  border: "2px solid #000",
-  boxShadow: 24,
-  p: 4,
-};
 
 const ReviewList = () => {
   const [reviews, setReviews] = useState([]);
-  // const [openModal, setOpenModal] = useState(false)
   const [isLoading, setIsLoading] = useState(true);
 
-  const PostReview = ({ handleClose, reviews }) => {
+  const PostReview = ({ reviews }) => {
     const { loggedInUser } = useContext(UserContext);
-    // const [addReview, setAddReview] = useState("")
     const [newReviewTitle, setNewReviewTitle] = useState("");
     const [newReviewPhoto, setNewReviewPhoto] = useState("");
     const [newReviewBody, setNewReviewBody] = useState("");
@@ -95,7 +70,6 @@ const ReviewList = () => {
         <div>
           <h3>Add review:</h3>
           <form onSubmit={handleSubmit}>
-            {/* <label>Title:</label> */}
             <input
               required
               type="text"
@@ -106,7 +80,6 @@ const ReviewList = () => {
               onChange={handleTitleChange}
             />
             <br />
-            {/* <label>Photo URL:</label> */}
             <input
               type="url"
               value={newReviewPhoto}
@@ -116,7 +89,6 @@ const ReviewList = () => {
               onChange={handlePhotoChange}
             />
             <br />
-            {/* <label>Description:</label> */}
             <input
               type="text"
               value={newReviewBody}
@@ -126,7 +98,6 @@ const ReviewList = () => {
               onChange={handleBodyChange}
             />
             <br />
-            {/* <label>Designer:</label> */}
             <input
               type="text"
               value={newReviewDesigner}
@@ -166,16 +137,6 @@ const ReviewList = () => {
               <option key="engine-building" value="engine-building">
                 engine-building
               </option>
-
-              {/* {
-                            categories.map((categoryOption) => {
-                              return (
-                                  <option>
-                                      {categoryOption.category}
-                                  </option>
-                              )
-                          })
-                          } */}
             </select>
             <br />
             <button type="submit" value="submit" className="submit-btn">
@@ -195,13 +156,6 @@ const ReviewList = () => {
       setIsLoading(false);
     });
   }, [category]);
-
-  // useEffect(() => {
-  //     getAllReviews().then((data) => {
-  //       setReviews(data);
-  //     })
-
-  //   }, []);
 
   const updateReviews = (reviews) => {
     setReviews(reviews);

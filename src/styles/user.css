@@ -17,10 +17,7 @@
 .user-profile-review {
   display: flex;
   flex-direction: row;
-  /* justify-content: center; */
   width: fit-content;
-  /* transform: translateX(20vw); */
-  /* position: relative; */
   margin: 20px auto;
 }
 

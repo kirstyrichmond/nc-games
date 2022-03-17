@@ -14,14 +14,6 @@ const PostComment = ({ singleReview, review_id, comments, setComments }) => {
     }
   }, [review_id, setComments]);
 
-  // useEffect(() => {
-  //     if(singleReview.comment_count > 0) {
-  //     getComments(review_id).then(comments => {
-  //         setComments(comments)
-  //     })
-  //     }
-  // }, [review_id, setComments])
-
   const handleSubmit = (event) => {
     event.preventDefault();
 
@@ -57,20 +49,13 @@ const PostComment = ({ singleReview, review_id, comments, setComments }) => {
         <form onSubmit={handleSubmit}>
           <textarea
             className="comment-form-textarea"
-            // name={newComment}
-            // id={newComment}
             value={newComment}
             onChange={handleChange}
             placeholder="Write comment here..."
             rows="4"
           />
           <div className="comment-form-button">
-            <button
-              //    disabled={!newComment ? true : false }
-              type="submit"
-            >
-              Submit
-            </button>
+            <button type="submit">Submit</button>
           </div>
         </form>
       </div>
