@@ -242,6 +242,9 @@ const ReviewList = () => {
                     alt={review.title}
                   />
                   <h3 className="review-list-title">{review.title}</h3>
+                  <p className="review-list-reviewbody">
+                    {review.review_body.slice(0, 125)}...
+                  </p>
                   <div>
                     <div className="review-list-votes">
                       <p> {review.votes} votes</p>

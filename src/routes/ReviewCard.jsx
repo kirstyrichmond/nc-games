@@ -15,8 +15,6 @@ import DeleteComment from "../components/CommentCard";
 import moment from "moment";
 import ChatBubbleOutlineRoundedIcon from "@mui/icons-material/ChatBubbleOutlineRounded";
 import { Box, CircularProgress } from "@mui/material";
-// import Comments from './Comments';
-// import { BsHandThumbsDown, BsHandThumbsUp } from "react-icons/bs";
 
 const ReviewPage = () => {
   const [singleReview, setSingleReview] = useState({});
@@ -106,13 +104,11 @@ const ReviewPage = () => {
               src={singleReview.review_img_url}
               alt={singleReview.title}
             />
-            {/* <p className='review-list-owner'>{singleReview.owner}</p> */}
-            {/* <p className='review-list-votes'>Votes: {singleReview.votes}</p> */}
-            <p>{singleReview.designer}</p>
             <p>{singleReview.review_body}</p>
             <Link to={`/reviews/${singleReview.category}`}>
-              <p className="review-list-category">{singleReview.category}</p>
+              <p className="review-card-category">{singleReview.category}</p>
             </Link>
+            <p className="review-card-designer">{singleReview.designer}</p>
             {/* <p className='review-list-created-at'>{moment(singleReview.created_at).startOf('hour').fromNow()}</p> */}
             <div className="vote-comment-count">
               <Vote
@@ -127,7 +123,7 @@ const ReviewPage = () => {
             </div>
           </div>
           <div className="comments-container">
-            <h3>Comments({singleReview.comment_count})</h3>
+            <h3 className="comments-title">Comments({singleReview.comment_count})</h3>
             <div>
               <PostComment
                 singleReview={singleReview}

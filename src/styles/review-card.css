@@ -16,10 +16,8 @@
 .comment-card {
   list-style-type: none;
   font-size: 0.6em;
-  /* background-color: rgb(244, 244, 244); */
   padding: 15px 15px;
   margin: 15px 15px 0px 15px;
-  /* border-radius: 8px; */
   max-width: 350px;
   margin: 10px auto;
   border-bottom: 1px solid rgb(210, 210, 210);
@@ -57,4 +55,19 @@
 
 .message {
   margin-top: 5vh;
+}
+
+.review-card-category {
+  padding: 5px;
+  color: rgb(45, 103, 220);
+  font-weight: 600;
+}
+
+.review-card-designer {
+  padding-top: 5px;
+  font-weight: 600;
+}
+
+.comments-title {
+  padding-bottom: 10px;
 }
