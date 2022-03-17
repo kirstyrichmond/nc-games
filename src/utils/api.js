@@ -120,10 +120,11 @@ export const deleteReview = (review_id) => {
       // })
       .delete(`/reviews/${review_id}`)
       .then(({ data }) => {
+        console.log({ review_id }, "has been deleted");
         return data.review;
       })
       .catch((err) => {
-        console.log(err);
+        console.log(err, "< error");
         throw err;
       })
   );
