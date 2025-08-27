@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const gamesApi = axios.create({
-  baseURL: "https://be-nc-games-app.herokuapp.com/api",
+  baseURL: "be-nc-games-production.up.railway.app/api",
 });
 
 // -------- GET ---------- //

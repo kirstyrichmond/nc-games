@@ -7,7 +7,7 @@ Created by Kirsty Richmond.
 
 [Back-end: Code](https://github.com/kirstyrichmond/be-nc-games)
 <br/>
-[NC Games: API ⬇](https://be-nc-games-app.herokuapp.com/api)
+[NC Games: API ⬇](be-nc-games-production.up.railway.app/api)
 <br/>
 ** **Download JSON viewer plugin to make the JSON text readable** **
 
